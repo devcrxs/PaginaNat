@@ -141,7 +141,7 @@
         <div>
             <div class="radio-inputs">
                 <label>
-                    <input checked id="radioGender" class="radio-input" type="radio" name="engine" onclick="SetOptionPersonalization('Gender','1')">
+                    <input checked id="radioGender" class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Gender','1')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/body.svg">
@@ -150,7 +150,7 @@
                         </span>
                 </label>
                 <label>
-                    <input class="radio-input" type="radio" name="engine" onclick="SetOptionPersonalization('Skin tone','1')">
+                    <input class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Skin tone','1')">
                     <span class="radio-tile">
                         <span class="radio-icon">
                             <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/body.svg">
@@ -159,7 +159,7 @@
                     </span>
                 </label>
                 <label>
-                    <input  class="radio-input" type="radio" name="engine" onclick="SetOptionPersonalization('Hair style','1')">
+                    <input  class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Hair style','1')">
                     <span class="radio-tile">
                         <span class="radio-icon">
                             <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/hair.svg">
@@ -168,7 +168,7 @@
                     </span>
                 </label>
                 <label>
-                    <input class="radio-input" type="radio" name="engine" onclick="SetOptionPersonalization('Eyes color','1')">
+                    <input class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Eyes color','1')">
                     <span class="radio-tile">
                         <span class="radio-icon">
                             <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/eye.svg">
@@ -177,7 +177,7 @@
                     </span>
                 </label>
                 <label>
-                    <input class="radio-input" type="radio" name="engine" onclick="SetOptionPersonalization('Gender','1')">
+                    <input class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Glasses1','1')">
                     <span class="radio-tile">
                         <span class="radio-icon">
                             <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/eye.svg">
@@ -192,23 +192,27 @@
                 </div>
             </div>
             <div class="optionsPersonalization">
-                <div id="Gender">
-                    <button onClick="char.gender = 'male';char.hair[1] = 0;char.drawMyChar();">&#9794;</button>
-                    <button onClick="char.gender = 'female';char.hair[1] = 1;char.drawMyChar()">&#9792;</button>
+                <div id="Gender" class="contentOptions">
+                    <button onClick="char.gender = 'male';char.hair[1] = 0;char.drawMyChar();" class="buttonOption selected">&#9794;</button>
+                    <button onClick="char.gender = 'female';char.hair[1] = 1;char.drawMyChar()" class="buttonOption">&#9792;</button>
                 </div>
-                <div id="Skin tone">
-                    <button onClick="char.ethnicity = 1;char.drawMyChar()"><img style="background-color: rgb(243, 221, 202); width: 15px;height: 15px;"></button >
-                    <button onClick="char.ethnicity = 0.7;char.drawMyChar()"><img style="background-color: rgb(217, 170, 135); width: 15px;height: 15px;"></button>
-                    <button onClick="char.ethnicity = 0.5;char.drawMyChar()"><img style="background-color: rgb(174, 121, 89); width: 15px;height: 15px;"></button>
-                    <button onClick="char.ethnicity = 0.1;char.drawMyChar()"><img style="background-color:rgb(132, 83, 60); width: 15px;height: 15px;"></button>
+                <div id="Skin tone" class="contentOptions">
+                    <button onClick="char.ethnicity = 1;char.drawMyChar()" class="buttonOption"><img style="background-color: rgb(243, 221, 202); width: 15px;height: 15px;"></button >
+                    <button onClick="char.ethnicity = 0.7;char.drawMyChar()" class="buttonOption"><img style="background-color: rgb(217, 170, 135); width: 15px;height: 15px;"></button>
+                    <button onClick="char.ethnicity = 0.5;char.drawMyChar()" class="buttonOption"><img style="background-color: rgb(174, 121, 89); width: 15px;height: 15px;"></button>
+                    <button onClick="char.ethnicity = 0.1;char.drawMyChar()" class="buttonOption"><img style="background-color:rgb(132, 83, 60); width: 15px;height: 15px;"></button>
                 </div>
                 <div id="Hair style">
                     <button onClick="char.hair[1]-=1; if(char.hair[1] < 0)char.hair[1] = 3;char.drawMyChar()">&#8592;</button>
                     <button onClick="char.hair[1]+=1; if(char.hair[1] > 3)char.hair[1] = 0;char.drawMyChar()" > &#8594;</button>
                 </div>
                 <div id="Eyes color">
-                    <input id="eyeColor" type="range" value="0" max="360"  onChange="char.eyes = value;char.drawMyChar();
-                    backSize.style.backgroundSize = '1000%';">
+                    <button onClick="char.eyes -= 50; if(char.eyes < 0) char.eyes = 0;char.drawMyChar();">&#8592;</button>
+                    <button onClick="char.eyes += 50; if(char.eyes > 360)char.eyes = 360;char.drawMyChar();" > &#8594;</button>
+                </div>
+                <div id="Glasses1">
+                    <button onClick="char.glasses -= 48; if(char.glasses < 0) char.glasses = 0;char.drawMyChar();">&#8592;</button>
+                    <button onClick="char.glasses += 48; if(char.glasses > 48*2)char.glasses = 48*2;char.drawMyChar();" > &#8594;</button>
                 </div>
             </div>
         </div>
@@ -225,7 +229,7 @@
         <div>
             <div class="radio-inputs">
                 <label>
-                    <input checked id="radioGender2" class="radio-input" type="radio" name="engine2" onclick="SetOptionPersonalization('Gender2','2')">
+                    <input checked id="radioGender2" class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Gender2','2')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/body.svg">
@@ -234,7 +238,7 @@
                         </span>
                 </label>
                 <label>
-                    <input class="radio-input" type="radio" name="engine2" onclick="SetOptionPersonalization('Skin tone2','2')">
+                    <input class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Skin tone2','2')">
                     <span class="radio-tile">
                         <span class="radio-icon">
                             <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/body.svg">
@@ -243,7 +247,7 @@
                     </span>
                 </label>
                 <label>
-                    <input  class="radio-input" type="radio" name="engine2" onclick="SetOptionPersonalization('Hair style2','2')">
+                    <input  class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Hair style2','2')">
                     <span class="radio-tile">
                         <span class="radio-icon">
                             <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/hair.svg">
@@ -252,7 +256,7 @@
                     </span>
                 </label>
                 <label>
-                    <input class="radio-input" type="radio" name="engine2" onclick="SetOptionPersonalization('Eyes color2','2')">
+                    <input class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Eyes color2','2')">
                     <span class="radio-tile">
                         <span class="radio-icon">
                             <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/eye.svg">
@@ -261,7 +265,7 @@
                     </span>
                 </label>
                 <label>
-                    <input class="radio-input" type="radio" name="engine2" onclick="SetOptionPersonalization('Gender2','2')">
+                    <input class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Glasses2','2')">
                     <span class="radio-tile">
                         <span class="radio-icon">
                             <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/eye.svg">
@@ -276,23 +280,27 @@
                 </div>
             </div> 
             <div class="optionsPersonalization">
-                <div id="Gender2">
-                    <button onClick="char2.gender = 'male';char2.hair[1] = 0;char2.drawMyChar();">&#9794;</button>
-                    <button onClick="char2.gender = 'female';char2.hair[1] = 1;char2.drawMyChar()">&#9792;</button>
+                <div id="Gender2" class="contentOptions">
+                    <button onClick="char2.gender = 'male';char2.hair[1] = 0;char2.drawMyChar();" class="buttonOption">&#9794;</button>
+                    <button onClick="char2.gender = 'female';char2.hair[1] = 1;char2.drawMyChar()" class="buttonOption selected">&#9792;</button>
                 </div>
-                <div id="Skin tone2">
-                    <button onClick="char2.ethnicity = 1;char2.drawMyChar()"><img style="background-color: rgb(243, 221, 202); width: 15px;height: 15px;"></button >
-                    <button onClick="char2.ethnicity = 0.7;char2.drawMyChar()"><img style="background-color: rgb(217, 170, 135); width: 15px;height: 15px;"></button>
-                    <button onClick="char2.ethnicity = 0.5;char2.drawMyChar()"><img style="background-color: rgb(174, 121, 89); width: 15px;height: 15px;"></button>
-                    <button onClick="char2.ethnicity = 0.1;char2.drawMyChar()"><img style="background-color:rgb(132, 83, 60); width: 15px;height: 15px;"></button>
+                <div id="Skin tone2" class="contentOptions">
+                    <button onClick="char2.ethnicity = 1;char2.drawMyChar()" class="buttonOption selected"><img style="background-color: rgb(243, 221, 202); width: 15px;height: 15px;"></button >
+                    <button onClick="char2.ethnicity = 0.7;char2.drawMyChar()" class="buttonOption"><img style="background-color: rgb(217, 170, 135); width: 15px;height: 15px;"></button>
+                    <button onClick="char2.ethnicity = 0.5;char2.drawMyChar()" class="buttonOption"><img style="background-color: rgb(174, 121, 89); width: 15px;height: 15px;"></button>
+                    <button onClick="char2.ethnicity = 0.1;char2.drawMyChar()" class="buttonOption"><img style="background-color:rgb(132, 83, 60); width: 15px;height: 15px;"></button>
                 </div>
                 <div id="Hair style2">
                     <button onClick="char2.hair[1]-=1; if(char2.hair[1] < 0)char2.hair[1] = 3;char2.drawMyChar()">&#8592;</button>
-                    <button onClick="char2.hair[1]+=1; if(char2.hair[1] > 3)char2.hair[1] = 0;char2.drawMyChar()" > &#8594;</button>
+                    <button onClick="char2.hair[1]+=1; if(char2.hair[1] > 3)char2.hair[1] = 0;char2.drawMyChar()"> &#8594;</button>
                 </div>
                 <div id="Eyes color2">
-                    <input id="eyeColor" type="range" value="0" max="360"  onChange="char2.eyes = value;char2.drawMyChar();
-                    backSize.style.backgroundSize = '1000%';">
+                    <button onClick="char2.eyes -= 50; if(char2.eyes < 0) char2.eyes = 0;char2.drawMyChar();">&#8592;</button>
+                    <button onClick="char2.eyes += 50; if(char2.eyes > 360)char2.eyes = 360;char2.drawMyChar();" > &#8594;</button>
+                </div>
+                <div id="Glasses2">
+                    <button onClick="char2.glasses -= 48; if(char2.glasses < 0) char2.glasses = 0;char2.drawMyChar();">&#8592;</button>
+                    <button onClick="char2.glasses += 48; if(char2.glasses > 48*2)char2.glasses = 48*2;char2.drawMyChar();" > &#8594;</button>
                 </div>
             </div>
             
@@ -306,6 +314,10 @@
 
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbAAAAAwCAYAAABwiS9GAAAACXBIWXMAAAsSAAALEgHS3X78AAAVS0lEQVR4Xu1de6wVxRnfoxWogqK1BtFqfSFWBKsiRCKlPqlaiw+sWlGIJr5itG1U2v5RE2ujsTH2gY9GIz5qtYBQay3YtF61WoSWIkpF1GptRKwaUdBiLd7+fsN+y9y5u2dnd2f2nHOZSSbn3N2Zb77vN3u/387MN3OiKKSAQEAgIBAQCAgEBAICAYGAQEAgIBAQqAeBRj3NhFYCAukIdHd397rx2HU7JxcXLtx4+8q5b6Q+q41GeITDsxVF4yaMuxU4jEJei7wd8otPdj35jYBNvQigH3r8Q6MPvP6DehVeL3ShtU5EwCQwktfwiROUKSvmdyUmkcjSSKzVBLa5EDDtTHuxmD5vddv4EDrPYfvuEx0w8oDo2WXPfjL73jkL165dO65T/i+gP1/Xxuj6+iYAH9jo/fD96VdF6ANvz4hTwaMPG30XAOEDswXyp5DfRB7x/LLnP8Tn68jz161bd7kP0ILMKAL+vYczAAb4J/AAf6d9XhV3nQB08hK5eSTWbgTWaQRs239d1w7JfLFoMxL7CDb1I5ExgcT+iI/XkIfAkX7F1t5WlTNImPp7JQAfdooNdeBf2ZnBaf4Mip4fE1Y04oD9MzF57tnlG+BMl6LAJ8iPwple6QPAsjI7kQBMnXPwbzsyyyMw9qWQWNoorJ0IrBMJ2OZ/RSevrBeLdiAxOM63od9nREeSGAng1DNP4aWX8H05SGySjc2tLFMnAbi008Sfspf9dZlX/DlKKpXgOG9CxZPgMLcieYGcSF4cAWSSIu5viXwwG0T50SCzK/D1FhDZhaWUcFDJhgCEFGgjdE5GOa0czYjeum7NyItQ8X6aLWl2CLH4Jgh9WopTh0JWMo2od/HYsVF03Umb1sey1sUcPBbOROg2ORPaBoLaxS44zQcBx2DkLhDWv4XAVr7wokJp5MEjFYkh7Y28x6BBg3iDRNcPZKZ8UbsknQCofzyKPEIj4HntRsDN8NdGwd7wLzUCg/O8bdq500479KDRW8+4ZcaWMXklz8HoQw+NFi9aZPVcxKTwGJzoBKsKjgqVIQC96VhvdaluIqPuwD8C/hHw58tAj5FvCfx72eCKwNLWiIiZEFcaUfG+PnWYVmb1wq5o/vykRxogs9QnwzcBc3QiDWcRsDkNKuVJwL71K/vv0i52ZT2HcJy/gm3HwElug8/UF3GSgDYCSKCIye1d3HsMF18DKVyahhPb9t0/BgGcCj32oy4agQkB8/IG5FeQayPgLAyK4q/bE9uXi7/Ns1uYwOA874HzPBPOs7FoyWJFVOJA6TiZDPJqOipj+ZgMloAIankjqoMAbMAvU0bX3RL/3GaEjHUi9klgMtW23WePiwYMnRKtX3W30vG9tx7uoSsdfxbBSUEhMl9Rin2dgM2HQ4jLxYuFi2nFtOcQznMOiOvLCNbYnvojYCP1GTedplkoJrJuENnPQWIXmPddEJgrAtB1q5OA0/SvC/9cx4UChQgMznMGpqAuBFE1dJKiA+SIQJJOarxmMyKInejP4EQvsVG8bJm6CKCsfs3qUXdOAZp4OsQ/GYn5IjCTvGgvCcwkryL4keh8RSlmRRnSwXcCARfBUda6XNpVlcTM5xDO8y2QVz+Q17bNyMvW7pgMPgKJ3Q4Su1iv54vA6iIAH/rXib9NHzJasEg6kaQn5CUjLl2AOSLLIy86Xy1dVESZomWFAFiPU286CZu26Hql2am3TVLZb+R+0cCBA1OjAIvqmVfeI/55TVe6nzbyakZe+tRbVsNSxlwfq6Rok8ppBMziaQScN3pkvSFjJ0R16d4ME5O8pGxVu66dtGmKtWqfwHn+COS1Lclr/GHjk5EXSUhyszbSysXrNP2xVnY+1sdWVdUxr35MAEfljR4pR9aQsmTG9xvQfSp0n5HXdtX77Yi/dRAHnP/tcNS7CgimU6dTzSI01jHXaUQOnb+QBUhgCwRJvIRRGBdcvSWdAMy1Oosp0R56ZdnlWnmdfCnbE/4qSKWONb03nzkjFaIipCUCBmMJf80a14j3lmc79Sk1baZATQJuRWCK7cirrF3XRkO6q47E4ra5PtRP9JBADd3Ry7W0pyGrHK+j3paoU/SFvtBDpxFAPxIwX6KZdJ2bkVZauVh3RcAYRZ6EUeTQQkoVK9x2+FsTGOzcTYhIpgsZRCBJSEgfuQgZsExehJyG417FMLUr3VcIQJ8u9IS/HaAFS+kh5s2mC9M2MZuRiWYZIS8ZydRBAp1IwDZd1q52wfkvgrMeGW9SjubMekCNUPg3k6yDCQHkkcIpk09WdeIIRSUDJPA/kMBskACDKXyktiMAWyOb4a+vQdaNf5E3jg36aEN3niaJpf3NupL1+3WNYPQ2ZfRCG/hdRoE64bK8/F23jlkPVV/Av9kIi/fM+83C6klkNtN0tv+kzcoxfF/ayiNgUyfTLlNvk4Bd6Gsrg1N8ddjFdrgmI9lWP63cDvjen86S5EQCmnzq5OS2EJlcEEdqjmhYTsryk2H2jFSM0y74PLKEbrlVYgI4Ugj40m9epgiYduiJ10yd066xHq9Td23LwP8wlTg7V5lyBTLx1zGtG3+rERjWdrib/TDdbomAi699gM9lmH76ND6fQd4G33fE57vI3LTMzHDXreNPNXQT4jDWwbiWdBumsc4rh3N2raoEIJL1vVS6Ha71FXlpa2sG/qqofuKG/j1Lryb450aOlrGVEYMS/CD1dTJIG31JubSwep3c5PuAAaujH5/RiC79pZ/lyGbTgmlkm0fAtM9m2rQM3kXqdIBdH9Me2Zg8fNjwxLysKMQ0+6WskJiQBYmAZIa0pAhuBcr2IgDasGLlil6jSMqMpwZ7kZlO1PwuWwVi3b0RMFRqS/ytCAzKM1qxvzhuWTcCITwCR7kT7j3+3AMzUvdSpHXwiJMv/gWuH4S86SnsWfDoAg9GbtFWEICPdaQU/BPSAv7WEaXAn5j58fApvcHRC6f3zKSTF8lNkhzgyzryfeLETbVN4jIJYP16FThgjUfuAxQXqIOAbXVxWa5D7BomNosTp/MXQhJHLmVih544eB0vuSfXdBLDtfddYqvJaksCKGDrML48EDvBf9bsWaq6iT2vZeHP68TbnHbURsGF8LclsP+YhoK8uvmWD0f9Rd77/DHnpGLx6iN39roOZ8tTohtwpHchcEN9LwBk6aKOCYB61EYCKfgr8hKizMK/CViNxU8tzjw/sTTITSoy4o5JiEvfjAyCSp4BkhU3KYO8EiLi30Ji8XVI6vKhZi+ZJGCdQKWADwKucx2P03odZNcW4kCJv0FeH8IBPofLJLl/IS/E3xPhLHfGJ5dJfoc8CHln5J1w7R187pkRMLHC00PViwDEhiIEQN1aRMBquUkwM8iLZ91a4Q/sOeB5B3L21HHWpnIL4W9LYMpRyxRcvGdr5YLvnXzsuO/w/N7s1MSxUuYUOOHTQWK2ejh7tmIbGiAAJbMgAas6HMkwfL6uZOAfAf9GHv55upEE67RBpqqEvCQ6bfq8VE0bcLK9bpDshODSRnZ5Npe936kEnGdvM7ukf5beMkS9QLT6xUIcqDHy2vqOiceeGztRZe60+QuWwFkyanoh7p1gYLAl7vMIKs70bCUy6URx+vu+eXiVvN+DAAzysiYAtN0SAtamWBPzhXiBL5eHeqRm+OMeIz4fBO4Kf6NqIfxtiYNHmPwZeQycKDuCa1t/KtmRZjWumXHyeSs4U66l/RrZy6nRKQQQ5RFAzsimwbDzOgnAXC901AdKjM26WZX2SFoHf3Vq9PITM+UYqNyRNxxo0mQKyTUYol0HiYmT72QCbtZ3WXZJnQMv2NQPuNaj39gvMcH5fLHghtFeJ4XDsXbDgfK0Xo4AkoRrXKLIShtw/3g40pkgrbPhiHV7VLS162QSgASj8HpRAoBuCQGDBBIC8EzAy9GWwl/XnT+Vcuqs1LgRhf/syb0DOmHvBmB/PG6rn78xtj4Uwt+WwN4fu+GNE+9YvuZ6OOsz4OhWzpgy/rz75jG2o1qCnEMuvvvxRZDL8Pltjh0aXbRgVfRkNanZtTuVAIB/A/grsiTRALeGI/wbwD8hYeDfAP5epkYZbffX38z01bXR0qU9nKzzdjqZgJuBYdpVZs+WSXAeXiweEALTR1+4xhfguVn2ZThXKT4VBLIfHP/GM/CQEC14IEZhPNtsiuMHKCEAkUvyKkMAqJ8QML6fDRLwSsCIbOw2py2p+82Hj2+c9fBvK8GUsm/vwCICrcLo4dTOOuSgkdG0/QdfDufJxUg1ZDx90hFF2mpWdjnkvgD5A4ZuP/g9tJc8UK4aIAHICMM1AegjFxKAK51FDmXG+Cc2OMZfkSLwbwD/yIcNa1Z8PiGYODDDCU7c8yWBHgqvNb2nHF30x8yrutRmaRKwr03Tvgk4DQdOCXaCXbs/+8INpv50omO7o4tu/d2CiPnpJeSywmklaqzXanF6Kyu4rLBwrUIyepQRjI0wEnBWBvlNhYzFBgkUIgAbHVgmbRP4w08/bVtdlWP/SF+h3/TtC4kcXLcdVKk6VgTGgl866esRnSjS7cicUoxuuIMvRU7SCEhZSPnfvvoaCuScsLPUFwhAwz/BxSH+SqaGvzPsKWgA3MOKNa9GiA7MPLOwaoMkMcpfP2Bje67T8MH1EPDSLteaN5dn2sW/XSX9xaKqXbsM3n4t9OKP4upTTuvOGT/+L8gRMxOd5PoPesWcZZp0wU5DpoAIH2EBLRKOIe9eE9v6ar/+lV/iIMd82ScBe0lClNQduDWOG9Pjx6Mz22R/yMuF9JX0l4F79Nn+/aOjBzLexi5ZEdiclRsDHfbebUe+nf8AX/s9+IfHrermqQE5LPIR5H6L8pmkvby6Re53MgEY+KuHPsatCASpZUUOSd4X/iQVrlPpa1X8+ZOsn0ApapScvCFtsD2XySRgynapP+X5JuA0PNLsmjRzYWWnyrZkGtKVXWMOGsWX5l8Zo41XMIX1MaexmK9/+UWV+V1GLZbPwUYHtyk5nULXHbKuvy0B2NigkW8hArCRzTJpR3Td+bjy3U2T/jKx9M3VEetITqt48hET8kT2uG9NQo/NvV+vOOisq3+4B3KhxtIKxzKSkEqjncryKaDTCYA2mLgQN4f4Jzi7xl/2gE2Yvjpi9nXME+VKG64PxzUJ2OUohcCLPF8EnPVP1Gl2Yc3lKqxP/dOJU4iF0KnqCfL55z9ctiGyTBKwIQAfehSVialKRmdKNYW/iVuezNfXMO4vin6/bm2STdy5phaXsX6BsCawc25+ONKCBhagobcmnebsl08eouKUz3Z8pE4lAMHCwF9ddoi/klcGf/14IPM79xkxipDEgnsNZh99KzIpf97Usao9tqv/enPZdk0C9jE9+bU7/swf5PRGwGm2s29ImEL6tMvV6EvaozzKdfFiEU9BcZNrF+U3O7S3SF9fdLtasvhIr3PCCSf0OHWoiLy0snTaiLxrxCTglIBNEkDUXwPtWRNAUduA++6sQ9xi7KxFEIfPDdk4y5aV2M/A31pmqYKXjNl1i7n3/0Sda9ZJCXpHpwwbqH72xJX+lEN5lEv5m1tqRmDAwvsD4rv9+OdAepzjV/FMvx6PiKk/CJiYdcvZgb6eJ7HLl3xTbuwrCtuln5145md25PQYyeUTRAt2IzquWBRBirH8/4Wcqykvfl67V61a9V840Xtc+DeRcfle+7D1brQzM9Zd+aCqiRGCIo/y2Q50V/93LvUXbHTdbeTfc9zxETP1or3bDVPnXqhP0Z2yOc3K/uV34N8tNlTFJ9QPCLQ1ApqDUyRDx8zNzxUOjU3xvZsOoTUJpyo4WQS80f/45/+q+tvWFwIr2i9G+UfRHveJXgPn9x7yE7btZ5WLCWwGnWnspLnWdosHAkgctJCAi/7VSUAjABKwk+fH0JEvDSrbDgBIXtwLRgKjLBmB8VNkCTkan1Zdaz2FaEibcOeFx0XMIQUE2gUB/mSLB10aSFFWrtpeE7mqXc/JewOif2xLgmUZu+DweAzRXnDU38O6zE343nw+yqKRp777U5bames8IBY6VU7xXWBRtXCRe995Wz2fccBFoTP/mjUmARwif+jQoVs99NBDTvs2JkruW1OqxLjlYjBgG57vHkWj9t14lOVRRx8dTZtyhvpkojz0p9IVbfCD3611L0tg2/9lSfITBLlGhAIBAd8I4EcZfTcR5LcegUEgmS/AUd+IN/pb4fwq71x/5PBxdKKUq6zDht3d4Eh7H+DqwPbYQQsJbOtAZEICZQnAUofkxZA4CYldsXdyvnKuGBLZnNMmR8ev/zg68p33VaacUVOnNki8gn+uoFAgINCXEJApJv6qMLOHKUSvcOn6p00nem28BuHxWlvplvQpRBDAuniqby3e2vvH60qlZbMi5HDj7AuQSzK8EfleEehiik+XoU/3oQ21XuUgqalPbR0sEelYf9WOTLVyutKF/jLtqU0nFoKk7AisUCOhcEDAJwIydcjfE4v3mvmYSvRpgpLtImrSu5Kta+AJvLE/hTwDzvrveGs/QkKzq6hEOZC3A+TyxPrLyGlV5GXVNY9jguN2slsRcngWIk8TkVPqfT37ampPplo5anKEvxp9UW48svOlv49uDTIDAtUQkJEXP1cvPV1l/dd/q0n3X5tvyaK7+avFLt6g/VuQ3YKMiFupQ6vbluAVjl4kS8RjPPqoqqIafeny4+9OohCrKue7fhiB+UY4yK8NgXb4ZeOixuqBJ643YBfVxXV57P9qlDkY2LUerZQnwSscvUjGfjD1HaMYF6pxf1kiW2tHBR719VTo4MS+Dkawr/MQmHTj+mjeZU5mY1piPJ28anj6fUn70zcDx9MSsEOjfQ6Bvk/Rfa7LgkE6AsOHH9i9GgcF6yQmJ3+wXLu/hXKajXpy/Y6Jp97rx221u/5ZT6PYxbMQN/dRWPiP9YdAmEL0h22QXAMCzz//t8a7b7zb4EisE5Po3YnTn3l4B/LKQyjcDwgEBDZrBPSTOLSgAXUKQScEQVDHwUMGqy0A8agl0b0T9N+sH75gfMsRCCOwlndBUMAFAtzIzKnDTkydPILsRLyDzgGBgEBAoC0Q0Df/QiEVTmxcaws9s5TQR5BpBwe3tfJBuYBAixEII7AWd0Bo3i0CIISODEzqVL3d9l6QFhAICAQEAgIBgYBAQCAgEBAICAQEAgIBgYBAQCAgEBAICAQEAgIBgYBAQCAgEBAICAQEAgIBgYBAQCAgEBAICAQEAgIBgYBAQCAgEBAICAQEAgIBgYBAQCAgEBAICAQEAgIBgYBAX0Lg/zHA1cWCTHAiAAAAAElFTkSuQmCC" 
             style="display: none" id="hairPartner"/>
+
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAAAwCAYAAABuSYqZAAAAa0lEQVR42u3WMQoAIQwEQH98D/GT95NcJYjFFVpEZQa2CGmXkFIAAAAAAAAAAAAAAACARNFlZp/qfWq0zOw5q6grc3pRV2bOL2v8XNPtyzpGWV1WlxU/q58VAAAAAAAAAAAAAAAAAAAAuMkH+Y5nyVuMj9cAAAAASUVORK5CYII=" 
+            style="display: none;" id="glasses">
+
     </div>
     <script src="main.js"></script>
 </body>

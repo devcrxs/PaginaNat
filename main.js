@@ -26,6 +26,8 @@ var eyesPartner = document.getElementById("eyesPartner");
 //hair
 var hairPartner = document.getElementById("hairPartner");
 
+var glassesPartner = document.getElementById("glasses");
+
 var containerCanvas = document.getElementById("containerCanvas");
 var canvasScreen = document.getElementById("canvasScreen");
 var containerCanvas2 = document.getElementById("containerCanvas2");
@@ -39,22 +41,31 @@ canvasScreen2.height = 50;
 var charCtx = canvasScreen.getContext("2d");
 var charCtx2 = canvasScreen2.getContext("2d");
 //new NewChar(gender,race,ethn,hair,eyes);
-function NewChar(actualCharacter,gender, skin, hair, eyes) {
+function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
   if (gender == undefined) {
     gender = "male";
     skin = 1;
     hair = [[0], [4], [48, 246, 336]];
     hair[1] = 0;
     eyes = 0;
+    glasses = 0;
+  }else{
+    skin = 1;
+    hair = [[0], [4], [48, 246, 336]];
+    hair[1] = 1;
+    eyes = 0;
+    glasses = 0;
   }
 
   this.gender = gender;
   this.ethnicity = skin;
   this.hair = hair;
   this.eyes = eyes;
+  this.glasses = glasses;
 
   this.drawMyChar = () => {
 
+    
     actualCharacter.clearRect(0, 0, 48, 48);
     actualCharacter.filter ="brightness(" + this.ethnicity + ")";
 
@@ -68,11 +79,14 @@ function NewChar(actualCharacter,gender, skin, hair, eyes) {
         actualCharacter.drawImage(bodyPartner, 48, 0, 48, 48, 0, 0, 48, 48);
     }
 
-    actualCharacter.filter = "hue-rotate(" + this.eyes + "deg) brightness(1)  ";
+    actualCharacter.filter = "hue-rotate(" + this.eyes + "deg) brightness(1)";
     actualCharacter.drawImage(eyesPartner, 0 + 48, 0, 48, 48, 0, 0, 48, 48);
 
     actualCharacter.filter ="hue-rotate(" +this.hair[0] +"deg) brightness(" +Number(1 - this.hair[0] / 1000) +")";
     actualCharacter.drawImage(hairPartner,this.hair[2][this.hair[1]],0,48,48,0,0,48,48);
+
+    
+    actualCharacter.drawImage(glassesPartner, this.glasses, 0, 48, 40, 0, 0, 48, 48);
   };
 
   this.drawMyChar();
@@ -96,7 +110,7 @@ function NewChar(actualCharacter,gender, skin, hair, eyes) {
 }
 let cadena1 = "";
 let cadena2 = "";
-function SetOptionPersonalization (idElement,type) {
+function SetCategoryPersonalization (idElement,type) {
   console.log(type);
   switch(type){
     case '1':
@@ -124,9 +138,35 @@ function SetOptionPersonalization (idElement,type) {
   
 };
 window.onload = function() {
-  SetOptionPersonalization('Gender','1');
-  SetOptionPersonalization('Gender2','2');
+  SetCategoryPersonalization('Gender','1');
+  SetCategoryPersonalization('Gender2','2');
 };
+const contenedores = document.querySelectorAll('.contentOptions');
+
+contenedores.forEach(contenedor => {
+  const buttons = contenedor.querySelectorAll('.buttonOption');
+  
+  // Añadir el evento de click a cada botón dentro de este contenedor
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Remover la clase 'selected' de todos los botones en este contenedor
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      
+      // Añadir la clase 'selected' al botón que fue clickeado
+      this.classList.add('selected');
+    });
+  });
+
+  // Evitar deselección al hacer clic fuera del contenedor
+  document.addEventListener('click', function(event) {
+    if (!contenedor.contains(event.target)) {
+      const selectedButton = contenedor.querySelector('.buttonOption.selected');
+      if (selectedButton) {
+        selectedButton.classList.add('selected'); // Mantener el botón seleccionado
+      }
+    }
+  });
+});
 var char = new NewChar(charCtx);
-var char2 = new NewChar(charCtx2);
+var char2 = new NewChar(charCtx2,'female');
      
