@@ -589,4 +589,24 @@ header{
     .slider .slides:nth-child(5){
         left: 360px;
     }
+    .carrousel{
+        display: flex;
+        width: 450px;
+        height: 430px;
+        margin: auto;
+        margin-top: 25px;
+        margin-bottom: 30px;
+    }
+    
+}
+@media only screen and (max-width: 600px){
+    .contentCards{
+        flex-direction: column;
+    }
+    .card {
+        width: 350px;
+      }
+      .radio-inputs {
+        flex-wrap: wrap;
+      }
 }

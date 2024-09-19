@@ -94,24 +94,38 @@ function NewChar(actualCharacter,gender, skin, hair, eyes) {
     z.disabled = true;
   };
 }
-let cadena = "";
-function SetOptionPersonalization (z) {
-    if (cadena.trim().length === 0) {
-        cadena = new String(z);
-    document.getElementById(cadena).style.display = "block";
-    console.log(z);
-    return;
-    }
-    document.getElementById(cadena).style.display = "none";
-    cadena = new String(z);
-    document.getElementById(cadena).style.display = "block";
-    console.log(z);
-  };
+let cadena1 = "";
+let cadena2 = "";
+function SetOptionPersonalization (idElement,type) {
+  console.log(type);
+  switch(type){
+    case '1':
+      if (cadena1.trim().length === 0) {
+        cadena1 = new String(idElement);
+        document.getElementById(cadena1).style.display = "block";
+        return;
+      }
+      document.getElementById(cadena1).style.display = "none";
+      cadena1 = idElement;
+      document.getElementById(cadena1).style.display = "block";
+    break;
+
+    case '2':
+      if (cadena2.trim().length === 0) {
+        cadena2 = new String(idElement);
+        document.getElementById(cadena2).style.display = "block";
+        return;
+      }
+      document.getElementById(cadena2).style.display = "none";
+      cadena2 = idElement;
+      document.getElementById(cadena2).style.display = "block";
+    break;
+  }
+  
+};
 window.onload = function() {
-    const defaultRadio = document.getElementById('radioGender');
-    if (defaultRadio.checked) {
-        SetOptionPersonalization('Gender');
-    }
+  SetOptionPersonalization('Gender','1');
+  SetOptionPersonalization('Gender2','2');
 };
 var char = new NewChar(charCtx);
 var char2 = new NewChar(charCtx2);
