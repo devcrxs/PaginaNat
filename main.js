@@ -167,6 +167,156 @@ contenedores.forEach(contenedor => {
     }
   });
 });
+let selectedCount = 0;
+const maxSelected = 10;
+
+// Función para seleccionar o previsualizar una imagen
+function previewOrSelect(imgElement, imageSrc) {
+    const wrapper = imgElement.parentNode;
+
+    if (wrapper.getAttribute("data-selected") === "true") {
+        previewImage(imageSrc);
+        return;
+    }
+
+    if (selectedCount >= maxSelected) {
+        previewImage(imageSrc);
+        return;
+    }
+
+    wrapper.setAttribute("data-selected", "true");
+    selectedCount++;
+    updateCounter();
+    previewImage(imageSrc);
+
+    if (selectedCount >= maxSelected) {
+        disableUnselectedImages();
+    }
+}
+
+// Función para previsualizar imagen
+function previewImage(imageSrc) {
+    const preview = document.getElementById("preview");
+    preview.src = imageSrc;
+}
+
+// Función para deseleccionar imágenes
+function deselectImage(buttonElement) {
+    const wrapper = buttonElement.parentNode;
+
+    if (wrapper.getAttribute("data-selected") === "true") {
+        wrapper.setAttribute("data-selected", "false");
+        selectedCount--;
+        updateCounter();
+
+        if (selectedCount < maxSelected) {
+            enableAllImages();
+        }
+
+        if (selectedCount === 0) {
+            clearPreview();
+        }
+    }
+}
+
+// Función para limpiar el área de previsualización
+function clearPreview() {
+    const preview = document.getElementById("preview");
+    preview.src = "";
+}
+
+// Función para deshabilitar las imágenes no seleccionadas
+function disableUnselectedImages() {
+    const allImages = document.querySelectorAll('.image-wrapper');
+    allImages.forEach(wrapper => {
+        if (wrapper.getAttribute("data-selected") === "false") {
+            const img = wrapper.querySelector('img');
+            img.classList.add('disabled');
+        }
+    });
+}
+
+// Función para habilitar todas las imágenes
+function enableAllImages() {
+    const allImages = document.querySelectorAll('.image-wrapper img');
+    allImages.forEach(img => {
+        img.classList.remove('disabled');
+    });
+}
+
+// Función para actualizar el contador de imágenes seleccionadas
+function updateCounter() {
+    const counterText = document.getElementById("counter");
+    counterText.textContent = `${selectedCount} / ${maxSelected} imágenes seleccionadas`;
+}
+
+// Función para mover el carrusel a izquierda o derecha
+function moveCarousel(direction) {
+    const carousel = document.querySelector('.carousel');
+    const scrollAmount = 150; // Cantidad de desplazamiento
+    if (direction === 'left') {
+        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else if (direction === 'right') {
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  checkCarouselItems();
+});
+
+// Función para comprobar cuántos items tiene el carrusel
+function checkCarouselItems() {
+  const carouselItems = document.querySelectorAll('.carousel .image-wrapper');
+  const carouselContainer = document.querySelector('.carousel-container');
+
+  if (carouselItems.length > 5) {
+      carouselContainer.classList.add('show-arrows');
+  } else {
+      carouselContainer.classList.remove('show-arrows');
+  }
+}
+
+function selectOption(option) {
+  const options = document.querySelectorAll('.optionCover');
+  options.forEach(opt => opt.classList.remove('selectedCover'));
+  option.classList.add('selectedCover');
+
+  const infoBox = document.querySelector('.info-box-Cover');
+  const images = document.querySelectorAll('.imagesCover img');
+
+  if (option.id === 'hard-cover') {
+      infoBox.textContent = 'The hard cover versions of our books have sturdy, durable covers made from high-quality materials meant to last a lifetime.';
+      images[0].src = 'https://placehold.co/300x200?text=Hard+Cover+Image+1';
+      images[0].alt = 'Close-up of a hard cover book showing its durability';
+      images[1].src = 'https://placehold.co/300x200?text=Hard+Cover+Image+2';
+      images[1].alt = 'Open hard cover book showing the quality of the materials';
+  } else {
+      infoBox.textContent = 'The soft cover versions of our books have soft, pliable covers made from thick, high-quality paper meant to withstand endless bending.';
+      images[0].src = 'https://placehold.co/300x200?text=Soft+Cover+Image+1';
+      images[0].alt = 'Close-up of a soft cover book showing its flexibility';
+      images[1].src = 'https://placehold.co/300x200?text=Soft+Cover+Image+2';
+      images[1].alt = 'Open soft cover book showing the quality of the paper';
+  }
+}
+window.addEventListener('resize', setMaxLengthResponsive);
+window.addEventListener('DOMContentLoaded', setMaxLengthResponsive);
+
+function setMaxLengthResponsive() {
+    const textarea = document.getElementById('textAreaDedication');
+    const width = window.innerWidth; // O el tamaño del contenedor si prefieres
+
+    let maxLength;
+
+    if (width < 600) {
+        maxLength = 90; // Por ejemplo, para pantallas pequeñas
+    } else if (width >= 600 && width < 1200) {
+        maxLength = 200; // Para pantallas medianas
+    } else {
+      maxLength = 300; // Para pantallas grandes
+    }
+
+    textarea.setAttribute('maxlength', maxLength);
+}
 var char = new NewChar(charCtx);
 var char2 = new NewChar(charCtx2,'female');
      

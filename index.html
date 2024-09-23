@@ -319,6 +319,145 @@
             style="display: none;" id="glasses">
 
     </div>
+    <br>
+    <div class="carousel-container">
+        <!-- Botón de flecha izquierda -->
+        <button class="carousel-arrow left-arrow" onclick="moveCarousel('left')">⬅️</button>
+
+        <div class="carousel">
+            <div class="image-wrapper" data-selected="false">
+                <img src="imgs/img1.jpg" alt="Image 1" class="thumbnail" onclick="previewOrSelect(this, 'imgs/img1.jpg')">
+                <button class="remove-btn" onclick="deselectImage(this)">X</button>
+            </div>
+            <div class="image-wrapper" data-selected="false">
+                <img src="imgs/img2.jpg" alt="Image 2" class="thumbnail" onclick="previewOrSelect(this, 'imgs/img2.jpg')">
+                <button class="remove-btn" onclick="deselectImage(this)">X</button>
+            </div>
+            <div class="image-wrapper" data-selected="false">
+                <img src="imgs/img3.jpg" alt="Image 2" class="thumbnail" onclick="previewOrSelect(this, 'imgs/img3.jpg')">
+                <button class="remove-btn" onclick="deselectImage(this)">X</button>
+            </div>
+            <div class="image-wrapper" data-selected="false">
+                <img src="imgs/img4.jpg" alt="Image 2" class="thumbnail" onclick="previewOrSelect(this, 'imgs/img4.jpg')">
+                <button class="remove-btn" onclick="deselectImage(this)">X</button>
+            </div>
+            <div class="image-wrapper" data-selected="false">
+                <img src="imgs/img2.jpg" alt="Image 2" class="thumbnail" onclick="previewOrSelect(this, 'imgs/img2.jpg')">
+                <button class="remove-btn" onclick="deselectImage(this)">X</button>
+            </div>
+            <div class="image-wrapper" data-selected="false">
+                <img src="imgs/img1.jpg" alt="Image 2" class="thumbnail" onclick="previewOrSelect(this, 'imgs/img1.jpg')">
+                <button class="remove-btn" onclick="deselectImage(this)">X</button>
+            </div>
+            <div class="image-wrapper" data-selected="false">
+                <img src="imgs/img3.jpg" alt="Image 2" class="thumbnail" onclick="previewOrSelect(this, 'imgs/img3.jpg')">
+                <button class="remove-btn" onclick="deselectImage(this)">X</button>
+            </div>
+            <!-- Añadir más imágenes aquí -->
+        </div>
+
+        <!-- Botón de flecha derecha -->
+        <button class="carousel-arrow right-arrow" onclick="moveCarousel('right')">➡️</button>
+    </div>
+
+    <div class="preview-container">
+        <h2>STORY PREVIEW</h2>
+        <p>CLICK EACH STORY TO PREVIEW HOW IT LOOKS</p>
+        <br>
+        <div>
+            <p id="counter">0 / 10 imágenes seleccionadas</p>
+        </div>
+        <br>
+        <div class="preview-wrapper">
+            <img id="preview" src="" alt="Vista previa">
+        </div>
+    </div>
+    <br>
+
+    <div class="containerCover">
+        <div class="titleCover"> Hard or Soft Cover?</div>
+        <button class="optionCover selectedCover" id="hard-cover" onclick="selectOption(this)">
+            <div class="descriptionCover">Book with a<br/><strong>HARD COVER</strong></div>
+            <div class="priceCover">Price:<strong>$49.99</strong></div>
+        </button>
+        <button class="optionCover" id="soft-cover" onclick="selectOption(this)">
+            <div class="descriptionCover">Book with a<br/><strong>SOFT COVER</strong></div>
+            <div class="priceCover">Price:<strong>$46.99</strong></div>
+        </button>
+        <div class="info-box-Cover">
+         The soft cover versions of our books have soft, pliable covers made from thick, high-quality paper meant to withstand endless bending.
+        </div>
+        <div class="imagesCover">
+            <img alt="Close-up of a soft cover book showing its flexibility" height="200" src="https://placehold.co/300x200?text=Hard+Cover+Image+2" width="300"/>
+            <img alt="Open soft cover book showing the quality of the paper" height="200" src="https://placehold.co/300x200?text=Soft+Cover+Image+2" width="300"/>
+        </div>
+    </div>
+    <div class="containerDedication"></div>
+        <h1 class="titleDedication">Write your dedication</h1>
+        <p class="subtitleDedication">Your personal dedication will be featured on the book's first page forever and it's free of charge. If you need help with your inspiration, check out our list of dedications for every occasion below.</p>
+        <div class="tab-content-Dedication">
+            <div class="dedication-area">
+                <div class="dedication-text">
+                    <textarea id="textAreaDedication" maxlength="700"></textarea>
+                </div>
+                <div class="dedication-lines">
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                    <div class="dedication-line"></div>
+                </div>
+            </div>
+            <p class="note">NOTE: Emojis and certain characters cannot be included due to printing limitations and will be removed.</p>
+        </div>
+    </div>
+    <div class="containerGift">
+        <div class="titleGift">Add a Gift Wrap (optional)</div>
+        <div class="gift-wrap-optionsGift">
+            <div class="gift-wrap-optionGift">
+                <h3>Love To Love You Lovely Gift Wrap</h3>
+                <p>Make your gift even lovelier with this elegant envelope-style gift wrap and its simple, heartfelt message.</p>
+                <img alt="Pink envelope-style gift wrap with heart patterns" height="200" src="imgs/img5.jpg" width="300"/>
+                <div class="thumbnailsGift">
+                    <img alt="Thumbnail of pink gift wrap" height="40" src="imgs/img1.jpg" width="40"/>
+                    <img alt="Thumbnail of blue gift wrap" height="40" src="imgs/img2.jpg" width="40"/>
+                    <img alt="Thumbnail of floral gift wrap" height="40" src="imgs/img3.jpg" width="40"/>
+                    <img alt="Thumbnail of polka dot gift wrap" height="40" src="imgs/img4.jpg" width="40"/>
+                </div>
+                <div class="price">
+                    <span class="original-price">$16.90</span>
+                    <span class="discounted-price">$13.90</span>
+                </div>
+                <a class="button" href="#">I WANT THIS ONE</a>
+                <a class="about" href="#">About this accessory</a>
+            </div>
+            <div class="gift-wrap-optionGift inactive">
+                <h3>Elegant Gift Wrap With Gold Foil</h3>
+                <p>Present your gift with this elegant, envelope-style gift wrap designed to shine on any occasion.</p>
+                <img alt="White envelope-style gift wrap with gold foil" height="200" src="imgs/img1.jpg" width="300"/>
+                <div class="thumbnailsGift">
+                    <img alt="Thumbnail of white gift wrap with gold foil" height="40" src="imgs/img2.jpg" width="40"/>
+                    <img alt="Thumbnail of blue gift wrap with gold foil" height="40" src="imgs/img3.jpg" width="40"/>
+                    <img alt="Thumbnail of floral gift wrap with gold foil" height="40" src="imgs/img4.jpg" width="40"/>
+                    <img alt="Thumbnail of polka dot gift wrap with gold foil" height="40" src="imgs/img5.jpg" width="40"/>
+                </div>
+                <div class="price">
+                    <span class="original-price">$16.90</span>
+                    <span class="discounted-price">$13.90</span>
+                </div>
+                <a class="button inactive" href="#">I WANT THIS ONE</a>
+                <a class="about" href="#">About this accessory</a>
+            </div>
+        </div>
+        <a class="continue-button" href="#">NO THANKS - CONTINUE</a>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

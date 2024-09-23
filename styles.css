@@ -475,6 +475,272 @@ header{
     outline: 2px solid rgba(0, 0, 0, 0.1);
     outline-offset: 2px;
 }
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+.carousel {
+    display: flex;
+    gap: 10px;
+    overflow: hidden; /* Ocultamos el overflow horizontal */
+    width: 500px; /* Define el ancho del carrusel */
+    padding: 10px;
+}
+
+.image-wrapper {
+    position: relative;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+}
+
+/* Flechas del carrusel */
+.carousel-arrow {
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+    top: 50%;
+    z-index: 1;
+}
+
+/* Estado de desactivación visual */
+.thumbnail.disabled {
+    opacity: 0.5;
+    pointer-events: none; /* Evita hover y clics visualmente, pero JavaScript los maneja */
+}
+
+.remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+.image-wrapper[data-selected="true"] .remove-btn {
+    display: block;
+}
+
+.preview-container {
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.preview-wrapper {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Ocultamos las flechas inicialmente */
+.carousel-arrow {
+    display: none;
+}
+
+/* Mostramos las flechas cuando hay más de 8 elementos */
+.carousel-container.show-arrows .carousel-arrow {
+    display: block;
+}
+
+#preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#counter {
+    font-size: 18px;
+    margin-top: 20px;
+}
+.containerCover {
+    margin: 50px auto 0 auto;
+    width: 25%;
+}
+.titleCover{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.optionCover{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+.optionCover.selectedCover {
+    border-color: #4CAF50;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.optionCover.descriptionCover {
+    font-size: 18px;
+    font-weight: bold;
+}
+.optionCover.priceCover {
+    font-size: 18px;
+    color: #666;
+}
+.optionCover.selectedCover .priceCover {
+    color: #4CAF50;
+}
+.info-box-Cover {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+.imagesCover {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.imagesCover img {
+    width: 45%;
+    border-radius: 5px;
+}
+
+.containerDedication {
+    width: 80%;
+    margin: 0 auto;
+}
+.titleDedication {
+    font-size: 24px;
+    color: #999;
+    margin: 0;
+    text-align: center;
+}
+.subtitleDedication {
+    font-size: 16px;
+    color: #666;
+    margin: 10px 0 30px 0;
+    text-align: center;
+}
+.tabDedication {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    background-color: #f5f5f5;
+    color: #999;
+}
+.tabDedication.activeDedication {
+    background-color: #4a4a4a;
+    color: #fff;
+}
+.tab + .tab {
+    margin-left: -1px;
+}
+.tab-content-Dedication {
+    justify-content: center;
+    width: 50%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f5f5f5;
+    position: relative;
+    margin: 0 auto;
+}
+.tab-content-Dedication::before {
+    content: 'Click to write your own.';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 0 10px;
+    color: #ff69b4;
+    font-size: 14px;
+}
+.dedication-area {
+    background-color: #ffe6e6;
+    padding: 40px;
+    margin-top: 20px;
+    position: relative;
+}
+.dedication-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://placehold.co/800x400?text=Background+Image') no-repeat center center;
+    background-size: cover;
+    opacity: 0.1;
+}
+.dedication-text {
+    position: relative;
+    z-index: 1;
+}
+.dedication-text textarea {
+    width: 100%;
+    height: 300px;
+    border: none;
+    background: transparent;
+    color: #999;
+    font-size: 20px;
+    text-align: center;
+    line-height: 1.2;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+}
+.dedication-lines {
+    position: relative;
+    z-index: 0;
+}
+.dedication-line {
+    background-color: #8f8f8f21;
+    background-size: contain;
+    height: 22px; /* Adjust height to match line height */
+    margin-bottom: 2px; /* Adjust margin to match line spacing */
+    margin-top: 2px;
+}
+.note {
+    color: #ff69b4;
+    font-size: 12px;
+    margin-top: 10px;
+}
 @media only screen and (max-width: 1320px){
     header{
         padding: 0 50px;
@@ -597,7 +863,112 @@ header{
         margin-top: 25px;
         margin-bottom: 30px;
     }
-    
+    .containerCover {
+        margin: 50px auto;
+        width: 60%;
+    }
+}
+.containerGift {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.titleGift {
+    font-size: 24px;
+    color: #666;
+    margin-bottom: 20px;
+}
+.gift-wrap-optionsGift {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.gift-wrap-optionGift {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+.gift-wrap-optionGift.inactive {
+    opacity: 0.3;
+}
+.gift-wrap-optionGift h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+.gift-wrap-optionGift p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+.gift-wrap-optionGift img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.thumbnailsGift {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+.thumbnailsGift img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+.price {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+.price .original-price {
+    text-decoration: line-through;
+    color: #999;
+}
+.price .discounted-price {
+    color: #e91e63;
+}
+.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #e91e63;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.button.inactive {
+    background-color: #e0e0e0;
+    color: #999;
+}
+.about {
+    font-size: 14px;
+    color: #e91e63;
+    text-align: center;
+    text-decoration: none;
+}
+.continue-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #e91e63;
+    border: 2px solid #e91e63;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
 }
 @media only screen and (max-width: 600px){
     .contentCards{
@@ -609,4 +980,5 @@ header{
       .radio-inputs {
         flex-wrap: wrap;
       }
+     
 }
