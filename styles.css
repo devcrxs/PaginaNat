@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 *{
     margin: 0;
     padding: 0;
     list-style: none;
     text-decoration: none;
-    font-family: "Google Sans Regular";
+    font-family: "Open Sans", sans-serif;
     box-sizing: border-box;
 }
 body{
@@ -16,12 +17,17 @@ body{
 header{
     width: 100%;
     height: 80px;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 100px;
-    border-radius: 50px;
-    margin-top: 10px;
+    position: fixed;
+    border: 1px solid #f2f4f9;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 666;
 }
 .fa-solid{
     color: #3c151e;
@@ -29,63 +35,63 @@ header{
 .logo{
     font-size: 28px;
     font-weight: bold;
-    color: #3c151e;
+    color: #8AAAE5;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 600;
+    margin-left: 10%;
 }
 .hamburger{
     display: none;
 }
+.nav-bar {
+    margin-right: 10%;
+}
 .nav-bar ul{
     display: flex;
+    align-items: center;
 }
 
 .nav-bar ul li a{
-    overflow: hidden;
     display: flex;
-    color: #3c151e;
+    color: #71717a;
     font-size: 20px;
     padding: 10px 25px;
     border-radius: 50px;
-    transition: 0.2s;
     margin: 0 5px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 500;
 }
 .nav-bar ul li a span{
-    opacity: 0;
-    width: 0;
     white-space: nowrap;
     overflow: hidden;
     transition: all 0.3s ease;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .nav-bar ul li a i{
     align-items: center;
     margin-top: 3px;
 }
-.nav-bar ul li a:hover span{
-    margin-left: 15px;
-    opacity: 1;
-    width: 70px;
+.nav-bar ul li a:hover i{
+    background: #5d74ce;
 }
 .nav-bar ul li a:hover{
-    color: #11101b;
-    background-color: #fefefe;
+    color: #8aaae5;
 }
 .nav-bar ul li a.active{
-    color: #11101b;
-    background: #fefefe;
+    color: #8aaae5;
 }
 .nav-bar ul li a.active span{
     opacity: 1;
 }
-
+.nav-bar ul li a i{
+    color: #fefefe;
+    background: #8aaae5;
+    border-radius: 20px;
+    padding: 10px 50px;
+}
 .description{
     text-align: center;
     align-items: center;
     display: block;
-    margin-top: 20px;
+    margin-top: 90px;
     margin-bottom: 0;
 }
 .description h3{
@@ -763,7 +769,7 @@ header{
         display: flex;
         align-items: center;
     }
-    .hamburger .icon {
+    .hamburger .icon-hamburger {
         position: absolute;
         height: 40px;
         width: 70px;
@@ -771,23 +777,25 @@ header{
         justify-content: center;
         align-items: center;
         transition: all 0.5s;
+   
       }
-      .hamburger .text {
+      .hamburger .text-hamburger {
         transform: translateX(55px);
         font-size: 20px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-weight: 600;
         display: flex;
         align-items: center;
-        color: #3c151e;
+        color: #71717a;
+        opacity: 1;
         transition: all 0.5s;
       }
       
-      .hamburger:hover .icon {
+      .hamburger:hover .icon-hamburger {
         transform: translateX(55px);
       }
       
-      .hamburger:hover .text {
+      .hamburger:hover .text-hamburger {
         opacity: 0;
       }
       
@@ -795,8 +803,8 @@ header{
         outline: none;
       }
       
-      .hamburger:active .icon {
-        transform: scale(0.1);
+      .hamburger:active .icon-hamburger {
+        opacity: 0;
       }
 
 
@@ -1006,6 +1014,15 @@ header{
       .radio-inputs {
         flex-wrap: wrap;
       }
+    #prev-btn{
+        transform: translate(-50px, 570px);
+    }
+    #next-btn{
+        transform: translateX(50px);
+    }
+    .content-book{
+        flex-direction: column;
+    }
      
 }
 .content-book{

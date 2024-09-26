@@ -1,7 +1,7 @@
 hamburger = document.querySelector(".hamburger");
 hamburger.onclick = function(){
-    navBar = document.querySelector(".nav-bar");
-    navBar.classList.toggle("active");
+  navBar = document.querySelector(".nav-bar");
+  navBar.classList.toggle("active");
 }
 
 
@@ -336,6 +336,10 @@ let maxLocation = numOfPapers + 1;
 
 function openBook(){
   book.style.transform = "translateX(50%)";
+  var x = window.matchMedia("(max-width: 600px)")
+  if(x.matches){
+    return;
+  }
   prevBtn.style.transform = "translateX(-180px)";
   nextBtn.style.transform = "translateX(180px)";
 }
@@ -346,7 +350,10 @@ function closeBook(isAtBeginning){
   else{
     book.style.transform = "translateX(100%)";
   }
-  
+  var x = window.matchMedia("(max-width: 600px)")
+  if(x.matches){
+    return;
+  }
   prevBtn.style.transform = "translateX(0px)";
   nextBtn.style.transform = "translateX(0px)";
 }
