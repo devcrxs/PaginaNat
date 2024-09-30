@@ -183,7 +183,7 @@ function previewOrSelect(imgElement, imageSrc) {
         previewImage(imageSrc);
         return;
     }
-
+    document.querySelector("#preview-text").style.display = "none";
     wrapper.setAttribute("data-selected", "true");
     selectedCount++;
     updateCounter();
@@ -223,6 +223,7 @@ function deselectImage(buttonElement) {
 function clearPreview() {
     const preview = document.getElementById("preview");
     preview.src = "";
+    document.querySelector("#preview-text").style.display = "flex";
 }
 
 // Función para deshabilitar las imágenes no seleccionadas
@@ -246,14 +247,14 @@ function enableAllImages() {
 
 // Función para actualizar el contador de imágenes seleccionadas
 function updateCounter() {
-    const counterText = document.getElementById("counter");
-    counterText.textContent = `${selectedCount} / ${maxSelected} imágenes seleccionadas`;
+    const counterText = document.getElementById("current-counter");
+    counterText.textContent = `${selectedCount}`;
 }
 
 // Función para mover el carrusel a izquierda o derecha
 function moveCarousel(direction) {
     const carousel = document.querySelector('.carousel');
-    const scrollAmount = 150; // Cantidad de desplazamiento
+    const scrollAmount = 200; // Cantidad de desplazamiento
     if (direction === 'left') {
         carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     } else if (direction === 'right') {
@@ -286,15 +287,15 @@ function selectOption(option) {
 
   if (option.id === 'hard-cover') {
       infoBox.textContent = 'The hard cover versions of our books have sturdy, durable covers made from high-quality materials meant to last a lifetime.';
-      images[0].src = 'https://placehold.co/300x200?text=Hard+Cover+Image+1';
+      images[0].src = 'https://cdn.hoorayheroes.com/static/assets/web/images/product/covers/hard/01.jpg';
       images[0].alt = 'Close-up of a hard cover book showing its durability';
-      images[1].src = 'https://placehold.co/300x200?text=Hard+Cover+Image+2';
+      images[1].src = 'https://cdn.hoorayheroes.com/static/assets/web/images/product/covers/hard/02.jpg';
       images[1].alt = 'Open hard cover book showing the quality of the materials';
   } else {
       infoBox.textContent = 'The soft cover versions of our books have soft, pliable covers made from thick, high-quality paper meant to withstand endless bending.';
-      images[0].src = 'https://placehold.co/300x200?text=Soft+Cover+Image+1';
+      images[0].src = 'https://cdn.hoorayheroes.com/static/assets/web/images/product/covers/soft/01.jpg';
       images[0].alt = 'Close-up of a soft cover book showing its flexibility';
-      images[1].src = 'https://placehold.co/300x200?text=Soft+Cover+Image+2';
+      images[1].src = 'https://cdn.hoorayheroes.com/static/assets/web/images/product/covers/soft/02.jpg';
       images[1].alt = 'Open soft cover book showing the quality of the paper';
   }
 }
@@ -357,15 +358,45 @@ function closeBook(isAtBeginning){
   prevBtn.style.transform = "translateX(0px)";
   nextBtn.style.transform = "translateX(0px)";
 }
+const mediaQuery = window.matchMedia("(max-width: 500px)");
 function goNextPage(){
   if(currentLocation < maxLocation){
     switch(currentLocation){
-      case 1: openBook();
-      paper1.classList.add("flipped");
-      paper1.style.zIndex = 1;
+      case 1: 
+      if(mediaQuery.matches){
+        if(paper1.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          openBook();
+          paper1.classList.add("flipped");
+          paper1.style.zIndex = 1;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        openBook();
+        paper1.classList.add("flipped");
+        paper1.style.zIndex = 1;
+      }
+ 
       break;
-      case 2: paper2.classList.add("flipped");
-      paper2.style.zIndex = 2;
+      case 2:
+      if(mediaQuery.matches){
+        if(paper2.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper2.classList.add("flipped");
+          paper2.style.zIndex = 2;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper2.classList.add("flipped");
+        paper2.style.zIndex = 2;
+      }
+      
       break;
       case 3: paper3.classList.add("flipped");
       paper3.style.zIndex = 3;
@@ -383,16 +414,55 @@ function goPrevPage(){
       paper1.classList.remove("flipped");
       paper1.style.zIndex = 3;
       break;
-      case 3: paper2.classList.remove("flipped");
-      paper2.style.zIndex = 2;
+      case 3: 
+      if(mediaQuery.matches){
+        if(paper2.classList.contains("flipped")){
+          paper2.classList.remove("flipped");
+          paper2.style.zIndex = 2;
+          book.style.transform =  "translateX(0)";
+          return;
+        }else{
+          book.style.transform =  "translateX(100%)";
+        }
+      }
+      else{
+        paper2.classList.remove("flipped");
+        paper2.style.zIndex = 2;
+      }
+      
       break;
-      case 4: openBook();
-      paper3.classList.remove("flipped");
-      paper3.style.zIndex = 1;
+      case 4:
+        if(mediaQuery.matches){
+          if(paper3.classList.contains("flipped")){
+            openBook();
+            paper3.classList.remove("flipped");
+            paper3.style.zIndex = 1;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          openBook();
+          paper3.classList.remove("flipped");
+          paper3.style.zIndex = 1;
+        }
+      
       break;
     }
     currentLocation --;
   }
+}
+
+
+function SaveContinue (sectionToHide, blockToDisplay, sectionToDisplay, blockToHide){
+  document.querySelector(".personalization").style.display = "block";
+  document.querySelector("#" + sectionToHide).style.display = "none";
+  document.querySelector("#" + blockToDisplay).style.display = "block";
+  document.querySelector("#" + sectionToDisplay).style.display = "flex";
+  document.querySelector("#" + blockToHide).style.display = "none";
 }
 
 var char = new NewChar(charCtx);
