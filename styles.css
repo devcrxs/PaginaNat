@@ -1239,12 +1239,14 @@ header{
 }
 .containerGift {
     max-width: 800px;
-    margin: 45px auto;
+    margin: 25px auto;
     padding: 20px;
     display: flex;
     align-content: center;
-    flex-wrap: wrap;
     justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
 }
 .gift-wrap-optionsGift {
     display: flex;
@@ -1266,13 +1268,13 @@ header{
     opacity: 0.3;
 }
 .gift-wrap-optionGift h3 {
-    font-size: 18px;
-    color: #333;
+    font-weight: bold;
+    color: #f9588a;
     margin-bottom: 10px;
 }
 .gift-wrap-optionGift p {
     font-size: 14px;
-    color: #666;
+    color: #5e6977;
     margin-bottom: 20px;
 }
 .gift-wrap-optionGift img {
@@ -1335,6 +1337,7 @@ header{
     text-decoration: none;
     font-size: 16px;
     margin-top: 20px;
+    width: 300px;
 }
 
 @media only screen and (max-width: 600px){
