@@ -3,7 +3,30 @@ hamburger.onclick = function(){
   navBar = document.querySelector(".nav-bar");
   navBar.classList.toggle("active");
 }
+const navLinks = document.querySelectorAll('.nav-bar a');
 
+navLinks.forEach(link => {
+    // Añadimos un event listener para el evento de clic
+    link.addEventListener('click', function(event) {
+        // Prevenimos el comportamiento predeterminado del enlace
+        event.preventDefault();
+        
+        // Removemos la clase "active" de todos los enlaces
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        // Añadimos la clase "active" al enlace clicado
+        this.classList.add('active');
+        
+        // Obtener el ID de la sección objetivo
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        // Desplazar suavemente a la sección objetivo
+        targetSection.scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
 let next = document.querySelector(".next");
 let prev = document.querySelector(".prev");
@@ -461,7 +484,7 @@ function SaveContinue (sectionToHide, blockToDisplay, sectionToDisplay, blockToH
   document.querySelector(".personalization").style.display = "block";
   document.querySelector("#" + sectionToHide).style.display = "none";
   document.querySelector("#" + blockToDisplay).style.display = "block";
-  document.querySelector("#" + sectionToDisplay).style.display = "flex";
+  document.querySelector("#" + sectionToDisplay).style.display = "block";
   document.querySelector("#" + blockToHide).style.display = "none";
 }
 

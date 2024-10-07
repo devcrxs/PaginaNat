@@ -13,9 +13,9 @@
         <div class="hamburger"> 
             <span class="icon-hamburger">
                 <svg viewBox="0 0 175 80" width="40" height="40">
-                    <rect width="80" height="15" fill="#5d74ce" rx="10"></rect>
-                    <rect y="30" width="80" height="15" fill="#5d74ce" rx="10"></rect>
-                    <rect y="60" width="80" height="15" fill="#5d74ce" rx="10"></rect>
+                    <rect width="80" height="15" fill="#08b5e5" rx="10"></rect>
+                    <rect y="30" width="80" height="15" fill="#08b5e5" rx="10"></rect>
+                    <rect y="60" width="80" height="15" fill="#08b5e5" rx="10"></rect>
                 </svg>
             </span>
             <span class="text-hamburger">MENU</span>
@@ -23,13 +23,13 @@
         <nav class="nav-bar">
             <ul>
                 <li>
-                    <a class="active" href=""><span>Home</span></a>
+                    <a class="active" href="#start-page"><span>Home</span></a>
                 </li>
                 <li>
-                    <a href=""><span>Product</span></a>
+                    <a href="#create-book"><span>Create Book</span></a>
                 </li>
                 <li>
-                    <a href=""><span>About</span></a>
+                    <a href="#about-page"><span>About</span></a>
                 </li>
                 <li>
                     <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
@@ -37,6 +37,7 @@
             </ul>
         </nav>
     </header>
+    <div id="start-page"></div>
     <br>
     <div class="description-header">
         <h4>Peronalized book</h4>
@@ -127,7 +128,7 @@
         <div class="create-button-container">
             <p class="create-button">CREATE BOOK NOW</p>
             <br>
-            <button class="create-button-circle"> <i class="fas fa-chevron-down"></i> </button>
+            <a href="#create-book"><button class="create-button-circle"> <i class="fas fa-chevron-down"></i> </button></a>
         </div>
     </div>
     
@@ -169,13 +170,18 @@
         <img src="https://assets.hoorayheroes.com/product_gallery/191/f43a90f8-e0b1-4aae-8ec8-299c3e768e3b.jpg">
     </section>
     <br>
-    
-    <div class="personalization">
+    <div class="personalization" id="create-book">
         <div class="description-photos">
             <h2>Ready? Create the best personalized book!</h2>
         </div>
         <br>
-        <div class="section" id="section-partner" style="display: none;">
+        <div class="steps-container" id="section-partner" style="display: none;">
+            <div class="step">
+                <span class="number">1.</span>
+                <span class="text">Personalize Partner</span>
+            </div>
+        </div>
+        <div class="section"  style="display: none;">
             <div class="number">1.</div>
             <div class="content-info">Personalize partner</div>
         </div>
@@ -379,9 +385,16 @@
 
     </div>
     
-    <div class="section" id="section-yourself">
+    <div class="section" style="display: none;">
         <div class="number">2.</div>
-        <div class="content-info">Personalize yourself</div>
+        <div class="content-info">Personalize Yourself</div>
+        <a><i class="fa-solid fa-pencil"></i></a>
+    </div>
+    <div class="steps-container" id="section-yourself" style="display: none;">
+        <div class="step">
+            <span class="number">2.</span>
+            <span class="text">Personalize Yourself</span>
+        </div>
     </div>
     <div class="container-preview-history" id="container-preview-history" style="display: none;">
         <h1>I Love You Because</h1>
@@ -456,8 +469,13 @@
         </div>
         <button class="save-button" onclick="SaveContinue('section-cover','container-cover','section-story','container-preview-history')">SAVE AND CONTINUE</button>
     </div>
-    
-    <div class="section" id="section-story" >
+    <div class="steps-container" id="section-story">
+        <div class="step">
+            <span class="number">3.</span>
+            <span class="text">Personalize Story</span>
+        </div>
+    </div>
+    <div class="section"  style="display: none;">
         <div class="number">3.</div>
         <div class="content-info">Personalize story</div>
     </div>
@@ -482,7 +500,13 @@
         <br><br>
         <button class="save-button" onclick="SaveContinue('section-dedication','container-dedication','section-cover','container-cover')">SAVE AND CONTINUE</button>
     </div>
-    <div class="section" id="section-cover">
+    <div class="steps-container" id="section-cover">
+        <div class="step">
+            <span class="number">4.</span>
+            <span class="text">Personalize Cover</span>
+        </div>
+    </div>
+    <div class="section" style="display: none;">
         <div class="number">4.</div>
         <div class="content-info">Personalize cover</div>
     </div>
@@ -517,7 +541,13 @@
         </div>
         <button class="save-button" onclick="SaveContinue('section-gift','container-gift','section-dedication','container-dedication')">SAVE AND CONTINUE</button>
     </div>
-    <div class="section" id="section-dedication">
+    <div class="steps-container" id="section-dedication">
+        <div class="step">
+            <span class="number">5.</span>
+            <span class="text">Personalize Dedication</span>
+        </div>
+    </div>
+    <div class="section" style="display: none;">
         <div class="number">5.</div>
         <div class="content-info">Personalize dedication</div>
     </div>
@@ -547,7 +577,13 @@
         <br>
         <a class="continue-button" href="#">NO THANKS - CONTINUE</a>
     </div>
-    <div class="section" id="section-gift">
+    <div class="steps-container" id="section-gift">
+        <div class="step">
+            <span class="number">6.</span>
+            <span class="text">Personalize Gift (optional)</span>
+        </div>
+    </div>
+    <div class="section" style="display: none;">
         <div class="number">6.</div>
         <div class="content-info">Personalize gift (optional)</div>
     </div>
@@ -609,7 +645,7 @@
     
     <br>
 
-    <div class="container-pay">
+    <div class="container-pay" id="about-page">
         <div class="icons-pay">
             <div class="icon-pay">
                 <i class="fas fa-gift"></i>
