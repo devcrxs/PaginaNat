@@ -170,21 +170,18 @@
         <img src="https://assets.hoorayheroes.com/product_gallery/191/f43a90f8-e0b1-4aae-8ec8-299c3e768e3b.jpg">
     </section>
     <br>
+    <div class="description-photos">
+        <h2>Ready? Create the best personalized book!</h2>
+    </div>
+    <br>
+    <div class="steps-container" id="section-partner" style="display: none;">
+        <div class="step" style="margin: 10px 0 0 0;">
+            <span class="number">1.</span>
+            <span class="text">Personalize Partner</span>
+            <span class="edit" style="display: none;" onclick="EditSection('personalize-partner','section-partner')"><i class="fa-regular fa-pen-to-square"></i></span>
+        </div>
+    </div>
     <div class="personalization" id="create-book">
-        <div class="description-photos">
-            <h2>Ready? Create the best personalized book!</h2>
-        </div>
-        <br>
-        <div class="steps-container" id="section-partner" style="display: none;">
-            <div class="step">
-                <span class="number">1.</span>
-                <span class="text">Personalize Partner</span>
-            </div>
-        </div>
-        <div class="section"  style="display: none;">
-            <div class="number">1.</div>
-            <div class="content-info">Personalize partner</div>
-        </div>
         <div class="personalize-partner" id="personalize-partner">
             <h1>Personalize your partner</h1>
             <br>
@@ -384,16 +381,11 @@
             style="display: none;" id="glasses">
 
     </div>
-    
-    <div class="section" style="display: none;">
-        <div class="number">2.</div>
-        <div class="content-info">Personalize Yourself</div>
-        <a><i class="fa-solid fa-pencil"></i></a>
-    </div>
-    <div class="steps-container" id="section-yourself" style="display: none;">
+    <div class="steps-container" id="section-yourself">
         <div class="step">
             <span class="number">2.</span>
             <span class="text">Personalize Yourself</span>
+            <span class="edit" style="display: none;" onclick="EditSection('personalize-yourself','section-yourself')"><i class="fa-regular fa-pen-to-square"></i></span>
         </div>
     </div>
     <div class="container-preview-history" id="container-preview-history" style="display: none;">
@@ -473,11 +465,8 @@
         <div class="step">
             <span class="number">3.</span>
             <span class="text">Personalize Story</span>
+            <span class="edit" style="display: none;" onclick="EditSection('container-preview-history','section-story')"><i class="fa-regular fa-pen-to-square"></i></span>
         </div>
-    </div>
-    <div class="section"  style="display: none;">
-        <div class="number">3.</div>
-        <div class="content-info">Personalize story</div>
     </div>
     <div class="containerCover" id="container-cover" style="display: none;">
         <h1 class="titleCover">Hard or Soft Cover?</h1>
@@ -504,11 +493,8 @@
         <div class="step">
             <span class="number">4.</span>
             <span class="text">Personalize Cover</span>
+            <span class="edit" style="display: none;" onclick="EditSection('container-cover','section-cover')"><i class="fa-regular fa-pen-to-square"></i></span>
         </div>
-    </div>
-    <div class="section" style="display: none;">
-        <div class="number">4.</div>
-        <div class="content-info">Personalize cover</div>
     </div>
     <div class="containerDedication" id="container-dedication" style="display: none;">
         <h1 class="titleDedication">Write your dedication</h1>
@@ -545,11 +531,8 @@
         <div class="step">
             <span class="number">5.</span>
             <span class="text">Personalize Dedication</span>
+            <span class="edit" style="display: none;" onclick="EditSection('container-dedication','section-dedication')"><i class="fa-regular fa-pen-to-square"></i></span>
         </div>
-    </div>
-    <div class="section" style="display: none;">
-        <div class="number">5.</div>
-        <div class="content-info">Personalize dedication</div>
     </div>
     <div class="containerGift" id="container-gift" style="display: none;">
         <h1 class="titleDedication">Add a Gift Wrap (optional)</h1>
@@ -581,11 +564,8 @@
         <div class="step">
             <span class="number">6.</span>
             <span class="text">Personalize Gift (optional)</span>
+            <span class="edit" style="display: none;" onclick="EditSection('container-gift','section-gift')"><i class="fa-regular fa-pen-to-square"></i></span>
         </div>
-    </div>
-    <div class="section" style="display: none;">
-        <div class="number">6.</div>
-        <div class="content-info">Personalize gift (optional)</div>
     </div>
     <br><br>
     <h1 class="titleDedication">Hooray!</h1>

@@ -479,13 +479,43 @@ function goPrevPage(){
   }
 }
 
-
-function SaveContinue (sectionToHide, blockToDisplay, sectionToDisplay, blockToHide){
-  document.querySelector(".personalization").style.display = "block";
-  document.querySelector("#" + sectionToHide).style.display = "none";
-  document.querySelector("#" + blockToDisplay).style.display = "block";
+let actualSection = null;
+let actualBlock = null;
+let sectionsValid = new Set();
+initialSection = document.querySelector("#section-partner");
+sectionsValid.add(initialSection.querySelector(".edit"));
+function SaveContinue(sectionToHide, blockToDisplay, sectionToDisplay, blockToHide) {
+  // Ocultar la sección y el bloque anteriores
+  actualSection = document.querySelector("#" + sectionToHide);
+  actualSection.style.display = "none";
+  actualBlock = document.querySelector("#" + blockToDisplay);
+  actualBlock.style.display = "block";
+  
+  // Mostrar la nueva sección y bloque
   document.querySelector("#" + sectionToDisplay).style.display = "block";
   document.querySelector("#" + blockToHide).style.display = "none";
+  
+  // Obtener los elementos con la clase 'edit' dentro de la sección oculta
+  let elements = actualSection.querySelectorAll(".edit");
+  
+  // Agregar cada elemento al Set individualmente
+  elements.forEach(element => sectionsValid.add(element));
+  
+  // Aplicar display block a todos los elementos en el Set
+  for (let elemento of sectionsValid) {
+    elemento.style.display = "block"; // Esto aplica solo si son elementos HTML individuales
+  }
+}
+
+function EditSection (blockToDisplay, sectionToHide){
+  if(actualSection != null && actualBlock != null){
+    actualBlock.style.display = "none";
+    actualSection.style.display = "block";
+    actualBlock = document.querySelector("#" + blockToDisplay);
+    actualBlock.style.display = "block";
+    actualSection = document.querySelector("#" + sectionToHide);
+    actualSection.style.display = "none";
+  }
 }
 
 var char = new NewChar(charCtx);
