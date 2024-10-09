@@ -23,7 +23,8 @@ navLinks.forEach(link => {
         
         // Desplazar suavemente a la sección objetivo
         targetSection.scrollIntoView({
-            behavior: 'smooth'
+           behavior: 'smooth',
+           block: 'center'
         });
     });
 });
@@ -490,7 +491,7 @@ function SaveContinue(sectionToHide, blockToDisplay, sectionToDisplay, blockToHi
   actualSection.style.display = "none";
   actualBlock = document.querySelector("#" + blockToDisplay);
   actualBlock.style.display = "block";
-  
+
   // Mostrar la nueva sección y bloque
   document.querySelector("#" + sectionToDisplay).style.display = "block";
   document.querySelector("#" + blockToHide).style.display = "none";
@@ -505,6 +506,10 @@ function SaveContinue(sectionToHide, blockToDisplay, sectionToDisplay, blockToHi
   for (let elemento of sectionsValid) {
     elemento.style.display = "block"; // Esto aplica solo si son elementos HTML individuales
   }
+  actualBlock.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center' // Opcional, trata de centrar el bloque
+  });
 }
 
 function EditSection (blockToDisplay, sectionToHide){
@@ -515,6 +520,10 @@ function EditSection (blockToDisplay, sectionToHide){
     actualBlock.style.display = "block";
     actualSection = document.querySelector("#" + sectionToHide);
     actualSection.style.display = "none";
+    actualBlock.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center' // Opcional, trata de centrar el bloque
+    });
   }
 }
 
