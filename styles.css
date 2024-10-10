@@ -1054,15 +1054,32 @@ header{
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
 }
+.step img {
+    border-radius: 50%; /* Para darle un aspecto circular a la imagen */
+    width: 100px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    margin-bottom: 10px; /* Espacio entre la imagen y el texto */
+}
 
+.step .text-container {
+    text-align: center;
+    font-size: 16px;
+    color: #5e6977;
+}
+
+.step .text-container span {
+    display: block; /* Cada línea será un bloque */
+    margin-bottom: 5px; /* Espacio entre las líneas */
+}
 
 .number {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     color: #d3d3d3;
-    margin-right: 20px;  /* Separa el número del texto */
+    margin-right: 0;  /* No requiere margen, ya que lo posicionaremos */
     position: absolute;
-    left: 20px;  /* Alinea el número a la izquierda */
+    top: 20px; /* Mover el número hacia la parte superior */
+    left: 20px; /* Alinea el número a la izquierda */
 }
 
 .text {
@@ -1078,9 +1095,12 @@ header{
     transition: background-color 0.3s ease;
 }
 .step .edit {
+    position: absolute;
+    top: 20px;
+    right: 20px; /* Alinea a la derecha */
     color: #f9588a;
-    font-size: 30px;
-    transform: translateX(-100%);
+    font-size: 24px;
+    cursor: pointer;
 }
 
 

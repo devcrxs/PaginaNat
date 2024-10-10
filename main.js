@@ -483,8 +483,9 @@ function goPrevPage(){
 let actualSection = null;
 let actualBlock = null;
 let sectionsValid = new Set();
-initialSection = document.querySelector("#section-partner");
-sectionsValid.add(initialSection.querySelector(".edit"));
+let sectionsValid2 = new Set();
+//initialSection = document.querySelector("#section-partner");
+//sectionsValid.add(initialSection.querySelector(".edit"));
 function SaveContinue(sectionToHide, blockToDisplay, sectionToDisplay, blockToHide) {
   // Ocultar la sección y el bloque anteriores
   actualSection = document.querySelector("#" + sectionToHide);
@@ -498,12 +499,17 @@ function SaveContinue(sectionToHide, blockToDisplay, sectionToDisplay, blockToHi
   
   // Obtener los elementos con la clase 'edit' dentro de la sección oculta
   let elements = actualSection.querySelectorAll(".edit");
+  let elements2 = actualSection.querySelectorAll("#info-section");
   
   // Agregar cada elemento al Set individualmente
   elements.forEach(element => sectionsValid.add(element));
+  elements2.forEach(element => sectionsValid2.add(element));
   
   // Aplicar display block a todos los elementos en el Set
   for (let elemento of sectionsValid) {
+    elemento.style.display = "block"; // Esto aplica solo si son elementos HTML individuales
+  }
+  for (let elemento of sectionsValid2) {
     elemento.style.display = "block"; // Esto aplica solo si son elementos HTML individuales
   }
   actualBlock.scrollIntoView({
