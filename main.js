@@ -3,29 +3,78 @@ hamburger.onclick = function(){
   navBar = document.querySelector(".nav-bar");
   navBar.classList.toggle("active");
 }
-const navLinks = document.querySelectorAll('.nav-bar a');
+// Seleccionamos todos los enlaces del menú de navegación
+const navLinks2 = document.querySelectorAll('.nav-bar ul li a');
+let isClickHeader = false; // Inicializa la variable isClickHeader
+let scrollTimeout; // Declaración del timeout
 
-navLinks.forEach(link => {
+// Función para activar el enlace correspondiente al hacer scroll
+window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout); // Limpiar el timeout anterior
+
+    let fromTop = window.scrollY;
+    // Recorrer todos los enlaces
+    navLinks2.forEach(link => {
+        // Obtener la sección a la que apunta el enlace (basado en el href)
+        let section = document.querySelector(link.getAttribute('href'));
+        // Verificar si la sección está dentro del viewport
+        if (
+            section.offsetTop - 400 <= fromTop &&
+            section.offsetTop + section.offsetHeight + 400 > fromTop && !isClickHeader // Usar !isClickHeader
+        ) {
+            // Si la sección está visible, añadir la clase 'active' al enlace
+            navLinks2.forEach(link2 => {
+                link2.classList.remove('active');
+            });
+            link.classList.add('active');
+        }
+    });
+
+    // Establecer un nuevo timeout para detectar que se ha dejado de hacer scroll
+    scrollTimeout = setTimeout(() => {
+        isClickHeader = false; // Cambiar la variable a false cuando se ha dejado de hacer scroll
+        console.log('El usuario ha dejado de hacer scroll.');
+    }, 150); // Cambia 150 a la cantidad de milisegundos que desees
+});
+
+// Código para el botón "Crear Libro"
+const buttonCreateBook = document.querySelector(".create-button-circle");
+buttonCreateBook.addEventListener('click', function(event) {
+    event.preventDefault();
+    let targetId2 = buttonCreateBook.parentElement.getAttribute('href');
+    let targetSection2 = document.querySelector(targetId2);
+    // Desplazar suavemente a la sección objetivo
+    targetSection2.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    });
+});
+
+// Añadir el event listener a los enlaces de la navegación
+navLinks2.forEach(link => {
     // Añadimos un event listener para el evento de clic
     link.addEventListener('click', function(event) {
+        isClickHeader = true; // Cambia a true cuando se hace clic en el header
         // Prevenimos el comportamiento predeterminado del enlace
         event.preventDefault();
-        
+
         // Removemos la clase "active" de todos los enlaces
-        navLinks.forEach(link => link.classList.remove('active'));
-        
+        navLinks2.forEach(link => link.classList.remove('active'));
+
         // Añadimos la clase "active" al enlace clicado
         this.classList.add('active');
-        
+
         // Obtener el ID de la sección objetivo
         const targetId = this.getAttribute('href').substring(1);
         const targetSection = document.getElementById(targetId);
-        
+
         // Desplazar suavemente a la sección objetivo
         targetSection.scrollIntoView({
-           behavior: 'smooth',
-           block: 'center'
+            behavior: 'smooth',
+            block: 'center'
         });
+
+        // No es necesario cambiar isClickHeader aquí, se cambiará al finalizar el scroll
     });
 });
 
