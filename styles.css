@@ -698,6 +698,13 @@ header{
     background-color: #f9588a; /* Even darker pink when clicked */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Shallow shadow when pressed */
 }
+.save-button:disabled{
+    background-color: #f9588a; /* Even darker pink when clicked */
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: .65;
+}
+
 .carousel-container {
     display: flex;
     align-items: center;
@@ -871,7 +878,32 @@ header{
     background-position: center;
     background-size: cover;
 }
-
+#canvasScreen3 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    z-index: 100;
+}
+#canvasScreen4 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    z-index: 100;
+    position: absolute;
+}
+#canvasScreen5 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    z-index: 100;
+    position: absolute;
+}
 #counter-preview {
     font-size: 15px;
     margin-top: 20px;
@@ -1508,8 +1540,8 @@ footer {
 }
 .book{
     position: relative;
-    width: 350px;
-    height: 500px;
+    width: 520px;
+    height: 400px;
     transition: transform 0.5s;
 }
 .paper{
@@ -1520,7 +1552,16 @@ footer {
     left: 0;
     perspective: 1500px;
 }
-.front, 
+.front{
+    background-color: rgb(243, 207, 207);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    transition: transform 0.5s;
+}
 .back{
     background-color: rgb(243, 207, 207);
     position: absolute;
@@ -1571,12 +1612,39 @@ footer {
     color: #f9588a;
 }
 #p1{
-    z-index: 3;
+    z-index: 12;
 }
 #p2{
-    z-index: 2;
+    z-index: 11;
 }
 #p3{
+    z-index: 10;
+}
+#p4{
+    z-index: 9;
+}
+#p5{
+    z-index: 8;
+}
+#p6{
+    z-index: 7;
+}
+#p7{
+    z-index: 6;
+}
+#p8{
+    z-index: 5;
+}
+#p9{
+    z-index: 4;
+}
+#p10{
+    z-index: 3;
+}
+#p11{
+    z-index: 2;
+}
+#p12{
     z-index: 1;
 }
 

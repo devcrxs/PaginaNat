@@ -244,11 +244,11 @@ let selectedCount = 0;
 const maxSelected = 10;
 
 // Función para seleccionar o previsualizar una imagen
-function previewOrSelect(imgElement, imageSrc) {
+function previewOrSelect(imgElement, imageSrc, previewIndex) {
     const wrapper = imgElement.parentNode;
 
     if (wrapper.getAttribute("data-selected") === "true") {
-        previewImage(imageSrc);
+        previewImage(imageSrc,previewIndex);
         return;
     }
 
@@ -260,17 +260,24 @@ function previewOrSelect(imgElement, imageSrc) {
     wrapper.setAttribute("data-selected", "true");
     selectedCount++;
     updateCounter();
-    previewImage(imageSrc);
+    previewImage(imageSrc,previewIndex);
 
     if (selectedCount >= maxSelected) {
         disableUnselectedImages();
+        var button = document.getElementById("button-save-preview");
+        button.disabled = false;
     }
 }
-
+let actualImageSrc;
+let actualPreviewIndex;
+function updatePreviewImage() {
+  EditSection2(actualImageSrc, actualPreviewIndex);
+}
 // Función para previsualizar imagen
-function previewImage(imageSrc) {
-    const preview = document.getElementById("preview");
-    preview.src = imageSrc;
+function previewImage(imageSrc, previewIndex) {
+    EditSection2(imageSrc, previewIndex);
+    actualImageSrc = imageSrc;
+    actualPreviewIndex = previewIndex;
 }
 
 // Función para deseleccionar imágenes
@@ -284,6 +291,8 @@ function deselectImage(buttonElement) {
 
         if (selectedCount < maxSelected) {
             enableAllImages();
+            var button = document.getElementById("button-save-preview");
+            button.disabled = true;
         }
 
         if (selectedCount === 0) {
@@ -294,9 +303,8 @@ function deselectImage(buttonElement) {
 
 // Función para limpiar el área de previsualización
 function clearPreview() {
-    const preview = document.getElementById("preview");
-    preview.src = "";
     document.querySelector("#preview-text").style.display = "flex";
+    ClearSection2();
 }
 
 // Función para deshabilitar las imágenes no seleccionadas
@@ -399,13 +407,22 @@ const book = document.querySelector("#book");
 const paper1 = document.querySelector("#p1");
 const paper2 = document.querySelector("#p2");
 const paper3 = document.querySelector("#p3");
+const paper4 = document.querySelector("#p4");
+const paper5 = document.querySelector("#p5");
+const paper6 = document.querySelector("#p6");
+const paper7 = document.querySelector("#p7");
+const paper8 = document.querySelector("#p8");
+const paper9 = document.querySelector("#p9");
+const paper10 = document.querySelector("#p10");
+const paper11 = document.querySelector("#p11");
+const paper12 = document.querySelector("#p12");
 
 
 prevBtn.addEventListener("click", goPrevPage);
 nextBtn.addEventListener("click", goNextPage);
 
 let currentLocation = 1;
-let numOfPapers = 3;
+let numOfPapers = 12;
 let maxLocation = numOfPapers + 1;
 
 function openBook(){
@@ -414,8 +431,8 @@ function openBook(){
   if(x.matches){
     return;
   }
-  prevBtn.style.transform = "translateX(-180px)";
-  nextBtn.style.transform = "translateX(180px)";
+  prevBtn.style.transform = "translateX(-280px)";
+  nextBtn.style.transform = "translateX(280px)";
 }
 function closeBook(isAtBeginning){
   if(isAtBeginning){
@@ -461,7 +478,7 @@ function goNextPage(){
         }else{
           paper2.classList.add("flipped");
           paper2.style.zIndex = 2;
-          book.style.transform =  "translateX(100%)";
+          
           return;
         }
       }
@@ -471,8 +488,162 @@ function goNextPage(){
       }
       
       break;
-      case 3: paper3.classList.add("flipped");
-      paper3.style.zIndex = 3;
+      case 3:
+      if(mediaQuery.matches){
+        if(paper3.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper3.classList.add("flipped");
+          paper3.style.zIndex = 3;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper3.classList.add("flipped");
+        paper3.style.zIndex = 3;
+      }
+      
+      break;
+      case 4:
+        console.log("entro");
+      if(mediaQuery.matches){
+        if(paper4.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper4.classList.add("flipped");
+          paper4.style.zIndex = 4;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper4.classList.add("flipped");
+        paper4.style.zIndex = 4;
+      }
+      
+      break;
+      case 5:
+      if(mediaQuery.matches){
+        if(paper5.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper5.classList.add("flipped");
+          paper5.style.zIndex = 5;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper5.classList.add("flipped");
+        paper5.style.zIndex = 5;
+      }
+      
+      break;
+      case 6:
+      if(mediaQuery.matches){
+        if(paper6.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper6.classList.add("flipped");
+          paper6.style.zIndex = 6;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper6.classList.add("flipped");
+        paper6.style.zIndex = 6;
+      }
+      
+      break;
+      case 7:
+      if(mediaQuery.matches){
+        if(paper7.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper7.classList.add("flipped");
+          paper7.style.zIndex = 7;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper7.classList.add("flipped");
+        paper7.style.zIndex = 7;
+      }
+      
+      break;
+      case 8:
+      if(mediaQuery.matches){
+        if(paper8.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper8.classList.add("flipped");
+          paper8.style.zIndex = 8;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper8.classList.add("flipped");
+        paper8.style.zIndex = 8;
+      }
+      
+      break;
+      case 9:
+      if(mediaQuery.matches){
+        if(paper9.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper9.classList.add("flipped");
+          paper9.style.zIndex = 9;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper9.classList.add("flipped");
+        paper9.style.zIndex = 9;
+      }
+      
+      break;
+      case 10:
+      if(mediaQuery.matches){
+        if(paper10.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper10.classList.add("flipped");
+          paper10.style.zIndex = 10;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper10.classList.add("flipped");
+        paper10.style.zIndex = 10;
+      }
+      
+      break;
+      case 11:
+      if(mediaQuery.matches){
+        if(paper11.classList.contains("flipped")){
+          book.style.transform =  "translateX(0)";
+        }else{
+          paper11.classList.add("flipped");
+          paper11.style.zIndex = 11;
+          book.style.transform =  "translateX(100%)";
+          return;
+        }
+      }
+      else{
+        paper11.classList.add("flipped");
+        paper11.style.zIndex = 11;
+      }
+      
+      break;
+      case 12: paper12.classList.add("flipped");
+      paper12.style.zIndex = 12;
       closeBook(false);
       break;
     }
@@ -485,13 +656,13 @@ function goPrevPage(){
     switch(currentLocation){
       case 2: closeBook(true);
       paper1.classList.remove("flipped");
-      paper1.style.zIndex = 3;
+      paper1.style.zIndex = 12;
       break;
       case 3: 
       if(mediaQuery.matches){
         if(paper2.classList.contains("flipped")){
           paper2.classList.remove("flipped");
-          paper2.style.zIndex = 2;
+          paper2.style.zIndex = 11;
           book.style.transform =  "translateX(0)";
           return;
         }else{
@@ -500,16 +671,178 @@ function goPrevPage(){
       }
       else{
         paper2.classList.remove("flipped");
-        paper2.style.zIndex = 2;
+        paper2.style.zIndex = 11;
       }
       
       break;
       case 4:
         if(mediaQuery.matches){
           if(paper3.classList.contains("flipped")){
-            openBook();
             paper3.classList.remove("flipped");
-            paper3.style.zIndex = 1;
+            paper3.style.zIndex = 10;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          paper3.classList.remove("flipped");
+          paper3.style.zIndex = 10;
+        }
+      
+      break;
+      case 5:
+        if(mediaQuery.matches){
+          if(paper4.classList.contains("flipped")){
+            paper4.classList.remove("flipped");
+            paper4.style.zIndex = 9;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          paper4.classList.remove("flipped");
+          paper4.style.zIndex = 9;
+        }
+      
+      break;
+      case 6:
+        if(mediaQuery.matches){
+          if(paper5.classList.contains("flipped")){
+            paper5.classList.remove("flipped");
+            paper5.style.zIndex = 8;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          paper5.classList.remove("flipped");
+          paper5.style.zIndex = 8;
+        }
+      
+      break;
+      case 7:
+        if(mediaQuery.matches){
+          if(paper6.classList.contains("flipped")){
+            paper6.classList.remove("flipped");
+            paper6.style.zIndex = 7;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          paper6.classList.remove("flipped");
+          paper6.style.zIndex = 7;
+        }
+      
+      break;
+      case 8:
+        if(mediaQuery.matches){
+          if(paper7.classList.contains("flipped")){
+            paper7.classList.remove("flipped");
+            paper7.style.zIndex = 6;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          paper7.classList.remove("flipped");
+          paper7.style.zIndex = 6;
+        }
+      
+      break;
+      case 9:
+        if(mediaQuery.matches){
+          if(paper8.classList.contains("flipped")){
+            paper8.classList.remove("flipped");
+            paper8.style.zIndex = 5;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          paper8.classList.remove("flipped");
+          paper8.style.zIndex = 5;
+        }
+      
+      break;
+      case 10:
+        if(mediaQuery.matches){
+          if(paper9.classList.contains("flipped")){
+            paper9.classList.remove("flipped");
+            paper9.style.zIndex = 4;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          paper9.classList.remove("flipped");
+          paper9.style.zIndex = 4;
+        }
+      
+      break;
+      case 11:
+        if(mediaQuery.matches){
+          if(paper10.classList.contains("flipped")){
+            paper10.classList.remove("flipped");
+            paper10.style.zIndex = 3;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          paper10.classList.remove("flipped");
+          paper10.style.zIndex = 3;
+        }
+      
+      break;
+      case 12:
+        if(mediaQuery.matches){
+          if(paper11.classList.contains("flipped")){
+            paper11.classList.remove("flipped");
+            paper11.style.zIndex = 2;
+            book.style.transform =  "translateX(0)";
+            return;
+          }else{
+            book.style.transform =  "translateX(100%)";
+          }
+          
+        }
+        else{
+          paper11.classList.remove("flipped");
+          paper11.style.zIndex = 2;
+        }
+      
+      break;
+      case 13:
+        if(mediaQuery.matches){
+          if(paper12.classList.contains("flipped")){
+            openBook();
+            paper12.classList.remove("flipped");
+            paper12.style.zIndex = 1;
             book.style.transform =  "translateX(0)";
             return;
           }else{
@@ -519,8 +852,8 @@ function goPrevPage(){
         }
         else{
           openBook();
-          paper3.classList.remove("flipped");
-          paper3.style.zIndex = 1;
+          paper12.classList.remove("flipped");
+          paper12.style.zIndex = 1;
         }
       
       break;
@@ -581,6 +914,239 @@ function EditSection (blockToDisplay, sectionToHide){
     });
   }
 }
+
+function EditSection2 (z,previewIndex){
+  console.log("jeje");
+  var canvas = document.getElementById("canvasScreen3");
+  var context = canvas.getContext("2d");
+  var canvas2 = document.getElementById("canvasScreen4");
+  var context2 = canvas2.getContext("2d");
+  var canvas3 = document.getElementById("canvasScreen5");
+  var context3 = canvas3.getContext("2d");
+
+  // Activar el suavizado de imagen
+  context.imageSmoothingEnabled = true;
+  context2.imageSmoothingEnabled = true;
+  context3.imageSmoothingEnabled = true;
+
+  // Cargar la imagen de fondo desde una URL
+  var img = new Image();
+  img.src = z; // La URL o el recurso que pasas para la imagen de fondo
+  
+  // Esperar a que la imagen de fondo se cargue antes de dibujarla
+  img.onload = function() {
+    // Ajustar el tamaño del canvas al tamaño de la imagen de fondo
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    canvas2.width = img.width;
+    canvas2.height = img.height;
+    canvas3.width = img.width;
+    canvas3.height = img.height;
+
+    // Limpiar el canvas antes de dibujar
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context2.clearRect(0, 0, canvas2.width, canvas2.height);
+    context3.clearRect(0, 0, canvas3.width, canvas3.height);
+
+    // Dibujar la imagen de fondo
+    context.drawImage(img, 0, 0, img.width, img.height);
+    context2.drawImage(img, 280, 0, img.width, img.height);
+    context3.drawImage(img, -270, 0, img.width, img.height);
+    
+    // Crear las imágenes x e y a partir de los otros canvas
+    var x = new Image();
+    var y = new Image();
+
+    // Asignar el contenido de otros canvas a las imágenes x y y
+    x.src = canvasScreen.toDataURL("image/png"); // canvasScreen ya debe existir
+    y.src = canvasScreen2.toDataURL("image/png"); // canvasScreen2 ya debe existir
+    console.log("entro" + previewIndex);
+    // Esperar a que las imágenes x e y se carguen antes de dibujarlas
+    switch(previewIndex){
+      case 0:
+        x.onload = function() {
+          context.drawImage(x, 250, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 150, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 800, 50, 200, 30);
+          };
+        };
+      break;
+      case 1:
+        x.onload = function() {
+          context.drawImage(x, 900, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 650, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 200, 50, 200, 30);
+          };
+        };
+        break;
+      case 2:
+        x.onload = function() {
+          context.drawImage(x, 950, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 700, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 150, 100, 200, 30);
+          };
+        };
+        break;
+      case 3:
+        x.onload = function() {
+          context.drawImage(x, 750, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 900, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 200, 50, 200, 30);
+          };
+        };
+        break;
+      case 4:
+        x.onload = function() {
+          context.drawImage(x, 200, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 400, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 700, 50, 200, 30);
+          };
+        };
+        break;
+      case 5:
+        x.onload = function() {
+          context.drawImage(x, 200, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 400, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 800, 100, 200, 30);
+          };
+        };
+        break;
+      case 6:
+        x.onload = function() {
+          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 380, 180, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
+          };
+        };
+        break;
+      case 7:
+        x.onload = function() {
+          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 380, 180, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
+          };
+        };
+        break;
+      case 8:
+        x.onload = function() {
+          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 380, 180, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
+          };
+        };
+        break;
+      case 9:
+        x.onload = function() {
+          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 380, 180, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
+          };
+        };
+        break;
+      case 10:
+        x.onload = function() {
+          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+    
+          y.onload = function() {
+            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+            
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 380, 180, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
+            insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
+          };
+        };
+        break;
+
+    }
+    context2 = context;
+    
+  };
+};
+function ClearSection2 (){
+  var canvas = document.getElementById("canvasScreen3");
+  var context = canvas.getContext("2d");
+  context.clearRect(0, 0, canvas.width, canvas.height);
+};
+
+function insertTextWithLineBreaks(context, text, x, y, maxWidth, lineHeight) {
+  var words = text.split(" ");
+  var line = "";
+  var lines = [];
+
+  // Crear las líneas ajustando las palabras al ancho máximo
+  for (var i = 0; i < words.length; i++) {
+    var testLine = line + words[i] + " ";
+    var testWidth = context.measureText(testLine).width;
+    if (testWidth > maxWidth && i > 0) {
+      lines.push(line);  // Empuja la línea completa al array de líneas
+      line = words[i] + " ";  // Inicia una nueva línea
+    } else {
+      line = testLine;
+    }
+  }
+  lines.push(line);  // Agregar la última línea restante
+
+  // Dibujar cada línea en el canvas
+  for (var j = 0; j < lines.length; j++) {
+    context.fillText(lines[j], x, y + j * lineHeight);
+  }
+}
+
+
 
 var char = new NewChar(charCtx);
 var char2 = new NewChar(charCtx2,'female');
