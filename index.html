@@ -283,7 +283,7 @@
                     </div>
                 </div>
             </div>
-            <button class="save-button" onclick="SaveContinue('section-yourself','personalize-yourself','section-partner','personalize-partner')">SAVE AND CONTINUE</button>
+            <button class="save-button" onclick="updateBookImages(),updatePreviewImage(),SaveContinue('section-yourself','personalize-yourself','section-partner','personalize-partner')">SAVE AND CONTINUE</button>
         </div>
         <div class="personalize-partner" id="personalize-yourself" style="display: none;">
             <h1>Personalize yourself</h1>
@@ -376,7 +376,7 @@
                     </div>
                 </div>
             </div>
-            <button class="save-button" onclick="updatePreviewImage(),SaveContinue('section-story','container-preview-history','section-yourself','personalize-yourself')">SAVE AND CONTINUE</button>
+            <button class="save-button" onclick="updateBookImages(),updatePreviewImage(),SaveContinue('section-story','container-preview-history','section-yourself','personalize-yourself')">SAVE AND CONTINUE</button>
         </div>
         <img src="data:image/png;base64,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"  
             style="display: none"  id="bodyPartner">
@@ -419,7 +419,7 @@
     
             <div class="carousel">
                 <div class="image-wrapper" data-selected="false">
-                    <img src="https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/stories/C01/M/04_stories/Z01.webp?version=1689150760" alt="Image 1" class="thumbnail" onclick="previewOrSelect(this, 'https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z01.webp?version=1689150760',0)">
+                    <img src="https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/stories/C01/M/04_stories/Z01.webp?version=1689150760" alt="Image 1" class="thumbnail" onclick="previewOrSelect(this, 'imgs/BookBackgrounds/01.webp',0)">
                     <div class="overlay-wraper"><i class="fa-solid fa-check"></i></div>
                     <button class="remove-btn" onclick="deselectImage(this)">X</button>
                     <p>You Always have My Back</p>
@@ -584,7 +584,7 @@
             </div>
             <p class="note">NOTE: Emojis and certain characters cannot be included due to printing limitations and will be removed.</p>
         </div>
-        <button class="save-button" onclick="SaveContinue('section-gift','container-gift','section-dedication','container-dedication')">SAVE AND CONTINUE</button>
+        <button class="save-button" onclick="SetDedicationBook(),SaveContinue('section-gift','container-gift','section-dedication','container-dedication')">SAVE AND CONTINUE</button>
     </div>
     <div class="steps-container" id="section-dedication">
         <div class="step">
@@ -629,22 +629,22 @@
     <br><br>
     <h1 class="titleDedication">Hooray!</h1>
     <br>
-    <p style="color: #FF5C8A;" class="subtitleDedication">Your “Marshall 10 Reasons I Love You” book is ready. Click through the book to see how your final product will look. Any changes can still be made in this step.</p>
+    <h2 style="color: #FF5C8A;" class="subtitleDedication">Your “Marshall 10 Reasons I Love You” book is ready. Click through the book to see how your final product will look. Any changes can still be made in this step.</h2>
     <br><br>
     <div class="content-book">
         
         <button id="prev-btn"> <i class="fas fa-arrow-circle-left"></i> </button>
-        
         <div id="book" class="book">
             <div id="p1" class="paper">
                 <div class="front">
                     <div id="f1" class="front-content">
-                        <h1>Front 1</h1>              
+                        <div style="z-index: 20; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.1); height: 100%; width: 100%; position: fixed;"></div>
+                        <img src="https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/00.webp?version=1729054851" >          
                     </div>
                 </div>
                 <div class="back">
                     <div id="b1" class="back-content">
-                        <h1>Back 1</h1>
+                        <canvas id="canvasBookDedication"></canvas>
                     </div>
                 </div>
             </div>
@@ -652,12 +652,23 @@
             <div id="p2" class="paper">
                 <div class="front">
                     <div id="f2" class="front-content">
-                        <h1>Front 2</h1>
+                        <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+                        <canvas id="canvasBookDedication"></canvas>
+                        <p id="dedicationTextBook" style="line-height: 14px; z-index: 100; color: rgb(0, 0, 0); font-family: Itim; font-size: 14px; letter-spacing: -0.8px; text-align: center; top: 120px; left: 770px; height: 170px; width: 230px;"><br><br><br><br><br>(Your own personal dedication will be printed here.)<br></p>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b2" class="back-content">
-                        <canvas id="canvasScreen4"></canvas>
+                        <canvas id="canvasBookStart"></canvas>
+                        <p style="z-index: 100;line-height: 1.1; color: rgb(75, 8, 51); font-family: Playwrite GB S; font-size: 14px; letter-spacing: 0px; text-align: center; text-shadow: none;">If roses were read,<br>I’d write one for you. <span style="font-family: Playwrite GB S; font-size: 24px;"><span
+                                    style="font-family: Playwrite GB S; font-size: 14px;">It would say: <br></span></span><span
+                                style="font-family: Playwrite GB S; color: #fbc3a2; font-size: 24px;">Flowers wilt, <br>So I made you a
+                                book.</span><br><span style="font-family: Playwrite GB S;">And its every word is true…</span><br><br><span
+                                style="font-size: 16px;">So, let’s be real, Honey.</span><br><br>The way I feel when you hold me<br>Defies some
+                            lines of poetry.<br>Those stolen breaths of mine don’t rhyme,<br>My tingling spine can’t be defined.<br>The closest
+                            word I can think of<br>For what you are to me is<br><span
+                                style="font-family: Playwrite GB S; font-size: 24px; top: 9px; position: relative; color: #b82825;">Love.</span><br><br><span
+                                style="font-size: 16px;">I love you, Marshall.</span><br>And those are all the words that need to be.</p>
                     </div>
                 </div>
             </div>
@@ -665,128 +676,247 @@
             <div id="p3" class="paper">
                 <div class="front">
                     <div id="f3" class="front-content">
-                        <canvas id="canvasScreen5"></canvas>
+                        <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
+                        <canvas id="canvasBookStart"></canvas>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b3" class="back-content">
-                        <h1>Back 3</h1>
+                        <canvas id="canvasBookStart2"></canvas>
                     </div>
                 </div>
             </div>
+
             <div id="p4" class="paper">
                 <div class="front">
                     <div id="f4" class="front-content">
-                        <h1>Front 4</h1>
+                        <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
+                        <canvas id="canvasBookStart2"></canvas>
+                        <p style="z-index: 100;line-height: 1.2; color: rgb(80, 11, 64); font-family: Playwrite GB S; font-size: 14px; letter-spacing: 0px; text-shadow: none; text-align: center; top: 120px; left: 770px; height: 130px; width: 230px;">But I like a challenge, you know me!<br>&nbsp;And I couldn’t let one more day go by<br>Without telling you <br><span
+                                style="font-family: Playwrite GB S; font-size: 26px; color: #fbc4a4; top: 4px; position: relative;">10 reasons
+                                why…</span></p>
                     </div>
                 </div>
+                
                 <div class="back">
                     <div id="b4" class="back-content">
-                        <h1>Back 4</h1>
+                        <canvas id="canvasBook1"></canvas>
                     </div>
                 </div>
             </div>
+
             <div id="p5" class="paper">
                 <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
                     <div id="f5" class="front-content">
-                        <h1>Front 5</h1>
+                        <canvas id="canvasBook1"></canvas>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b5" class="back-content">
-                        <h1>Back 5</h1>
+                        <canvas id="canvasBook2"></canvas>
                     </div>
                 </div>
             </div>
             <div id="p6" class="paper">
                 <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
                     <div id="f6" class="front-content">
-                        <h1>Front 6</h1>
+                        <canvas id="canvasBook2"></canvas>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b6" class="back-content">
-                        <h1>Back 6</h1>
+                        <canvas id="canvasBook3"></canvas>
                     </div>
                 </div>
             </div>
             <div id="p7" class="paper">
                 <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
                     <div id="f7" class="front-content">
-                        <h1>Front 7</h1>
+                        <canvas id="canvasBook3"></canvas>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b7" class="back-content">
-                        <h1>Back 7</h1>
+                        <canvas id="canvasBook4"></canvas>
                     </div>
                 </div>
             </div>
             <div id="p8" class="paper">
                 <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
                     <div id="f8" class="front-content">
-                        <h1>Front 8</h1>
+                        <canvas id="canvasBook4"></canvas>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b8" class="back-content">
-                        <h1>Back 8</h1>
+                        <canvas id="canvasBook5"></canvas>
                     </div>
                 </div>
             </div>
             <div id="p9" class="paper">
                 <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
                     <div id="f9" class="front-content">
-                        <h1>Front 9</h1>
+                        <canvas id="canvasBook5"></canvas>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b9" class="back-content">
-                        <h1>Back 9</h1>
+                        <canvas id="canvasBook6"></canvas>
                     </div>
                 </div>
             </div>
             <div id="p10" class="paper">
                 <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
                     <div id="f10" class="front-content">
-                        <h1>Front 10</h1>
+                        <canvas id="canvasBook6"></canvas>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b10" class="back-content">
-                        <h1>Back 10</h1>
+                        <canvas id="canvasBook7"></canvas>
                     </div>
                 </div>
             </div>
             <div id="p11" class="paper">
                 <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
                     <div id="f11" class="front-content">
-                        <h1>Front 11</h1>
+                        <canvas id="canvasBook7"></canvas>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b11" class="back-content">
-                        <h1>Back 11</h1>
+                        <canvas id="canvasBook8"></canvas>
                     </div>
                 </div>
             </div>
             <div id="p12" class="paper">
                 <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
                     <div id="f12" class="front-content">
-                        <h1>Front 12</h1>
+                        <canvas id="canvasBook8"></canvas>
                     </div>
                 </div>
                 <div class="back">
                     <div id="b12" class="back-content">
-                        <h1>Back 12</h1>
+                        <canvas id="canvasBook9"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div id="p13" class="paper">
+                <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
+                    <div id="f13" class="front-content">
+                        <canvas id="canvasBook9"></canvas>
+                    </div>
+                </div>
+                <div class="back">
+                    <div id="b13" class="back-content">
+                        <canvas id="canvasBook10"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div id="p14" class="paper">
+                <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
+                    <div id="f14" class="front-content">
+                        <canvas id="canvasBook10"></canvas>
+                    </div>
+                </div>
+                <div class="back">
+                    <div id="b14" class="back-content">
+                        <canvas id="canvasBook11"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div id="p15" class="paper">
+                <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
+                    <div id="f15" class="front-content">
+                        <canvas id="canvasBook11"></canvas>
+                    </div>
+                </div>
+                <div class="back">
+                    <div id="b15" class="back-content">
+                        <canvas id="canvasBookEnd2"></canvas>
+                        <p
+                            style="z-index: 100; ;line-height: 1.1; color: rgb(71, 8, 50); font-family: Playwrite GB S; font-size: 14px; letter-spacing: 0.3px; text-align: center; text-shadow: none; top: 43px; left: 5px; height: 330px; width: 576px;">
+                            I had a memory of you on the day we first met.<br>I felt these reasons then too, and I’ll never forget<br>Knowing
+                            right then that, push come to shove,<br><span
+                                style="font-family: Playwrite GB S; font-size: 22px; top: 8px; position: relative; color: #976579;">We’d be
+                                together, Marshall, guided by love.</span><br><br>Love’s not always clear and can hurt to the bone,<br>Yet
+                            soothes any fear while feeling like home.<br>It says more in one kiss than a thousand words do,<br>And lets us
+                            reminisce about dreams we’ll make true.<br><br><span
+                                style="font-family: Playwrite GB S; font-size: 21px; color: #a19daa;">So, let’s be dreamers,</span><br><span
+                                style="font-family: Playwrite GB S; font-size: 21px; color: #a19daa;">Honey.</span><br><br>After all,<br>Roses
+                            are red,<br>Violets are blue,<br>You’re my reason to love, Marshall,<br><span
+                                style="font-family: Playwrite GB S; font-size: 23px; color: #976579; top: 7px; position: relative;">And I love
+                                to love you.</span></p>
+                    </div>
+                </div>
+            </div>
+            <div id="p16" class="paper">
+                <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
+                    <div id="f16" class="front-content">
+                        <canvas id="canvasBookEnd2"></canvas>
+                    </div>
+                </div>
+                <div class="back">
+                    <div id="b16" class="back-content">
+                        <canvas id="canvasBookEnd"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div id="p17" class="paper">
+                <div class="front">
+                    <div style="z-index: 200; box-shadow:inset 10px 0px 5px rgba(0,0,0,0.05); height: 100%; width: 100%; position: fixed;"></div>
+
+                    <div id="f17" class="front-content">
+                        <canvas id="canvasBookEnd"></canvas>
+                    </div>
+                </div>
+                <div class="back">
+                    <div id="b17" class="back-content">
+                        <img src="https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/07.webp?version=1729054851">
                     </div>
                 </div>
             </div>
         </div>
     
-        <button id="next-btn"> <i class="fas fa-arrow-circle-right"></i> </button>
+        <button style="z-index: 1000;" id="next-btn"> <i class="fas fa-arrow-circle-right"></i> </button>
     </div>
-    
+    <canvas id="pruebaCanvas1" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas2" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas3" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas4" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas5" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas6" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas7" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas8" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas9" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas10" style="display: none;"></canvas>
+    <canvas id="pruebaCanvas11" style="display: none;"></canvas>
     
     
     
