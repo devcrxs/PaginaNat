@@ -11,121 +11,39 @@ const canvases = [
   { id: "#canvasBook10", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" },
   { id: "#canvasBook11", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" }
 ]; 
-hamburger = document.querySelector(".hamburger");
-hamburger.onclick = function(){
-  navBar = document.querySelector(".nav-bar");
-  navBar.classList.toggle("active");
-}
-// Seleccionamos todos los enlaces del menú de navegación
-const navLinks2 = document.querySelectorAll('.nav-bar ul li a');
-let isClickHeader = false; // Inicializa la variable isClickHeader
-let scrollTimeout; // Declaración del timeout
 
-// Función para activar el enlace correspondiente al hacer scroll
-window.addEventListener('scroll', () => {
-    clearTimeout(scrollTimeout); // Limpiar el timeout anterior
 
-    let fromTop = window.scrollY;
-    // Recorrer todos los enlaces
-    navLinks2.forEach(link => {
-        // Obtener la sección a la que apunta el enlace (basado en el href)
-        let section = document.querySelector(link.getAttribute('href'));
-        // Verificar si la sección está dentro del viewport
-        if (
-            section.offsetTop - 400 <= fromTop &&
-            section.offsetTop + section.offsetHeight + 400 > fromTop && !isClickHeader // Usar !isClickHeader
-        ) {
-            // Si la sección está visible, añadir la clase 'active' al enlace
-            navLinks2.forEach(link2 => {
-                link2.classList.remove('active');
-            });
-            link.classList.add('active');
-        }
-    });
+let nextCarouselHeader = document.querySelector(".next"); // carrusel de imagenes en el header 
+let prevCarouselHeader = document.querySelector(".prev");
+let sliderCarouselHeader = document.querySelector(".slider");
 
-    // Establecer un nuevo timeout para detectar que se ha dejado de hacer scroll
-    scrollTimeout = setTimeout(() => {
-        isClickHeader = false; // Cambiar la variable a false cuando se ha dejado de hacer scroll
-        console.log('El usuario ha dejado de hacer scroll.');
-    }, 150); // Cambia 150 a la cantidad de milisegundos que desees
-});
-
-// Código para el botón "Crear Libro"
-const buttonCreateBook = document.querySelector(".create-button-circle");
-buttonCreateBook.addEventListener('click', function(event) {
-    event.preventDefault();
-    let targetId2 = buttonCreateBook.parentElement.getAttribute('href');
-    let targetSection2 = document.querySelector(targetId2);
-    // Desplazar suavemente a la sección objetivo
-    targetSection2.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-    });
-});
-
-// Añadir el event listener a los enlaces de la navegación
-navLinks2.forEach(link => {
-    // Añadimos un event listener para el evento de clic
-    link.addEventListener('click', function(event) {
-        isClickHeader = true; // Cambia a true cuando se hace clic en el header
-        // Prevenimos el comportamiento predeterminado del enlace
-        event.preventDefault();
-
-        // Removemos la clase "active" de todos los enlaces
-        navLinks2.forEach(link => link.classList.remove('active'));
-
-        // Añadimos la clase "active" al enlace clicado
-        this.classList.add('active');
-
-        // Obtener el ID de la sección objetivo
-        const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-
-        // Desplazar suavemente a la sección objetivo
-        targetSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-
-        // No es necesario cambiar isClickHeader aquí, se cambiará al finalizar el scroll
-    });
-});
-
-let next = document.querySelector(".next");
-let prev = document.querySelector(".prev");
-let slider = document.querySelector(".slider");
-
-next.addEventListener("click", function(){
+nextCarouselHeader.addEventListener("click", function(){
     let slides = document.querySelectorAll(".slides");
-    slider.appendChild(slides[0]);
+    sliderCarouselHeader.appendChild(slides[0]);
 });
-prev.addEventListener("click", function(){
+prevCarouselHeader.addEventListener("click", function(){
     let slides = document.querySelectorAll(".slides");
-    slider.prepend(slides[slides.length - 1]);
+    sliderCarouselHeader.prepend(slides[slides.length - 1]);
 });
 
 
-//body
-var bodyPartner = document.getElementById("bodyPartner");
-//eyes
-var eyesPartner = document.getElementById("eyesPartner");
-//hair
-var hairPartner = document.getElementById("hairPartner");
+//personalization items
+let bodyCharacter = document.getElementById("bodyCharacter");
+let eyesCharacter = document.getElementById("eyesCharacter");
+let hairCharacter = document.getElementById("hairCharacter");
+let glassesCharacter = document.getElementById("glassesCharacter");
 
-var glassesPartner = document.getElementById("glasses");
 
-var containerCanvas = document.getElementById("containerCanvas");
-var canvasScreen = document.getElementById("canvasScreen");
-var containerCanvas2 = document.getElementById("containerCanvas2");
-var canvasScreen2 = document.getElementById("canvasScreen2");
+let canvasScreenPartner = document.getElementById("canvasScreenPartner");
+let canvasScreenYourself = document.getElementById("canvasScreenYourself");
 
-canvasScreen.width = 50;
-canvasScreen.height = 50;
-canvasScreen2.width = 50;
-canvasScreen2.height = 50;
+canvasScreenPartner.width = 50;
+canvasScreenPartner.height = 50;
+canvasScreenYourself.width = 50;
+canvasScreenYourself.height = 50;
 
-var charCtx = canvasScreen.getContext("2d");
-var charCtx2 = canvasScreen2.getContext("2d");
+let contextPartner = canvasScreenPartner.getContext("2d");
+let contextYourself = canvasScreenYourself.getContext("2d");
 //new NewChar(gender,race,ethn,hair,eyes);
 function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
   if (gender == undefined) {
@@ -156,89 +74,74 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
     actualCharacter.filter ="brightness(" + this.ethnicity + ")";
 
     if (this.gender == "male") {
-      actualCharacter.drawImage(bodyPartner, 48, 0, 48, 48, 0, 0, 48, 48);
+      actualCharacter.drawImage(bodyCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
     } 
     else if (this.gender == "female") {
-      actualCharacter.drawImage(bodyPartner, 192, 0, 48, 48, 0, 0, 48, 48);
+      actualCharacter.drawImage(bodyCharacter, 192, 0, 48, 48, 0, 0, 48, 48);
     } 
     else {
-        actualCharacter.drawImage(bodyPartner, 48, 0, 48, 48, 0, 0, 48, 48);
+        actualCharacter.drawImage(bodyCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
     }
 
     actualCharacter.filter = "hue-rotate(" + this.eyes + "deg) brightness(1)";
-    actualCharacter.drawImage(eyesPartner, 0 + 48, 0, 48, 48, 0, 0, 48, 48);
+    actualCharacter.drawImage(eyesCharacter, 0 + 48, 0, 48, 48, 0, 0, 48, 48);
 
     actualCharacter.filter ="hue-rotate(" +this.hair[0] +"deg) brightness(" +Number(1 - this.hair[0] / 1000) +")";
-    actualCharacter.drawImage(hairPartner,this.hair[2][this.hair[1]],0,48,48,0,0,48,48);
+    actualCharacter.drawImage(hairCharacter,this.hair[2][this.hair[1]],0,48,48,0,0,48,48);
 
     
-    actualCharacter.drawImage(glassesPartner, this.glasses, 0, 48, 40, 0, 0, 48, 48);
+    actualCharacter.drawImage(glassesCharacter, this.glasses, 0, 48, 40, 0, 0, 48, 48);
   };
 
   this.drawMyChar();
-  
-  this.giveBirth = (z) => {
-    var x = document.createElement("IMG");
-    var y = document.createElement("IMG");
-    x.src = canvasScreen.toDataURL("image/png");
-    y.src = canvasScreen2.toDataURL("image/png");
-    x.style.width = "100px";
-    y.style.width = "100px";
-    document.getElementById("ContentPartner").appendChild(x);
-    document.getElementById("ContentPartner").appendChild(y);
-    document.getElementById("myChildren").style.display = "block"
-    document.getElementById("historyP").innerText = "love story between " + document.getElementById("name1").value +  " and " + document.getElementById("name2").value;
-    actualCharacter.clearRect(0, 0, 60, 60);
-    char = new NewChar(charCtx,char.gender,char.ethnicity,char.hair,char.eyes);
-    char2 = new NewChar(charCtx2,char2.gender,char2.ethnicity,char2.hair,char2.eyes);
-    z.disabled = true;
-  };
 }
-let cadena1 = "";
-let cadena2 = "";
-function SetCategoryPersonalization (idElement,type) {
-  console.log(type);
+
+
+
+let actualSectionPartner = "";
+let actualSectionYourself = "";
+function SetCategoryPersonalization (section,type) {
   switch(type){
     case '1':
-      if (cadena1.trim().length === 0) {
-        cadena1 = new String(idElement);
-        document.getElementById(cadena1).style.display = "block";
+      if (actualSectionPartner.trim().length === 0) {
+        actualSectionPartner = new String(section);
+        document.getElementById(actualSectionPartner).style.display = "block";
         return;
       }
-      document.getElementById(cadena1).style.display = "none";
-      cadena1 = idElement;
-      document.getElementById(cadena1).style.display = "block";
+      document.getElementById(actualSectionPartner).style.display = "none";
+      actualSectionPartner = section;
+      document.getElementById(actualSectionPartner).style.display = "block";
     break;
 
     case '2':
-      if (cadena2.trim().length === 0) {
-        cadena2 = new String(idElement);
-        document.getElementById(cadena2).style.display = "block";
+      if (actualSectionYourself.trim().length === 0) {
+        actualSectionYourself = new String(section);
+        document.getElementById(actualSectionYourself).style.display = "block";
         return;
       }
-      document.getElementById(cadena2).style.display = "none";
-      cadena2 = idElement;
-      document.getElementById(cadena2).style.display = "block";
+      document.getElementById(actualSectionYourself).style.display = "none";
+      actualSectionYourself = section;
+      document.getElementById(actualSectionYourself).style.display = "block";
     break;
   }
   
 };
 window.onload = function() {
-  SetCategoryPersonalization('Gender','1');
-  SetCategoryPersonalization('Gender2','2');
+  SetCategoryPersonalization('GenderPartner','1');
+  SetCategoryPersonalization('GenderYourself','2');
 };
-const contenedores = document.querySelectorAll('.contentOptions');
 
-contenedores.forEach(contenedor => {
-  const buttons = contenedor.querySelectorAll('.buttonOption');
+
+
+let optionSingles = document.querySelectorAll('.contentOptions');
+
+optionSingles.forEach(contenedor => {
+  let buttons = contenedor.querySelectorAll('.buttonOption');
   
-  // Añadir el evento de click a cada botón dentro de este contenedor
   buttons.forEach(button => {
     button.addEventListener('click', function() {
-      // Remover la clase 'selected' de todos los botones en este contenedor
       buttons.forEach(btn => btn.classList.remove('selected'));
       
-      // Añadir la clase 'selected' al botón que fue clickeado
       this.classList.add('selected');
     });
   });
@@ -246,13 +149,18 @@ contenedores.forEach(contenedor => {
   // Evitar deselección al hacer clic fuera del contenedor
   document.addEventListener('click', function(event) {
     if (!contenedor.contains(event.target)) {
-      const selectedButton = contenedor.querySelector('.buttonOption.selected');
+      let selectedButton = contenedor.querySelector('.buttonOption.selected');
       if (selectedButton) {
         selectedButton.classList.add('selected'); // Mantener el botón seleccionado
       }
     }
   });
 });
+
+
+
+
+//TODO 
 let selectedCount = 0;
 const maxSelected = 10;
 
@@ -328,8 +236,8 @@ function pruebaaaa(canva2s,src,i){
     var y = new Image();
 
     // Asignar el contenido de otros canvas a las imágenes x y y
-    x.src = canvasScreen.toDataURL("image/png"); // canvasScreen ya debe existir
-    y.src = canvasScreen2.toDataURL("image/png"); // canvasScreen2 ya debe existir
+    x.src = canvasScreenPartner.toDataURL("image/png"); // canvasScreen ya debe existir
+    y.src = canvasScreenYourself.toDataURL("image/png"); // canvasScreen2 ya debe existir
     // Esperar a que las imágenes x e y se carguen antes de dibujarlas
     switch(i){
       case 0:
@@ -1394,8 +1302,8 @@ function EditSection2 (z,previewIndex){
     var y = new Image();
 
     // Asignar el contenido de otros canvas a las imágenes x y y
-    x.src = canvasScreen.toDataURL("image/png"); // canvasScreen ya debe existir
-    y.src = canvasScreen2.toDataURL("image/png"); // canvasScreen2 ya debe existir
+    x.src = canvasScreenPartner.toDataURL("image/png"); // canvasScreen ya debe existir
+    y.src = canvasScreenYourself.toDataURL("image/png"); // canvasScreen2 ya debe existir
     // Esperar a que las imágenes x e y se carguen antes de dibujarlas
     switch(previewIndex){
       case 0:
@@ -1847,6 +1755,6 @@ function SetDedicationBook(){
   }
 }
 
-var char = new NewChar(charCtx);
-var char2 = new NewChar(charCtx2,'female');
+var characterPartner = new NewChar(contextPartner);
+var characterYourself = new NewChar(contextYourself,'female');
      

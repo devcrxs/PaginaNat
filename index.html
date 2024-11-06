@@ -207,7 +207,7 @@
             <div>
                 <div class="radio-inputs">
                     <label>
-                        <input checked id="radioGender" class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Gender','1')">
+                        <input checked id="radioGender" class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('GenderPartner','1')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/body.svg">
@@ -216,7 +216,7 @@
                         </span>
                     </label>
                     <label>
-                        <input class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Skin tone','1')">
+                        <input class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('SkinTonePartner','1')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/body.svg">
@@ -225,7 +225,7 @@
                         </span>
                     </label>
                     <label>
-                        <input  class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Hair style','1')">
+                        <input  class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('HairStylePartner','1')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/hair.svg">
@@ -234,7 +234,7 @@
                         </span>
                     </label>
                     <label>
-                        <input class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Eyes color','1')">
+                        <input class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('EyesColorPartner','1')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/eye.svg">
@@ -243,7 +243,7 @@
                         </span>
                     </label>
                     <label>
-                        <input class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('Glasses1','1')">
+                        <input class="radio-input" type="radio" name="engine" onclick="SetCategoryPersonalization('GlassesPartner','1')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/eye.svg">
@@ -253,33 +253,33 @@
                     </label>
                 </div>
                 <br>
-                <div class="grid-item1" id="containerCanvas">
-                    <div class="lol">
-                        <canvas id="canvasScreen" style="width: 100px;background-color:transparent;margin-top: 10px; border-radius: 10px;"></canvas>
+                <div class="grid-item1" id="containerCanvas-partner">
+                    <div>
+                        <canvas id="canvasScreenPartner" style="width: 100px;background-color:transparent;margin-top: 10px; border-radius: 10px;"></canvas>
                     </div>
                 </div>
                 <div class="optionsPersonalization">
-                    <div id="Gender" class="contentOptions">
-                        <button onClick="char.gender = 'male';char.hair[1] = 0;char.drawMyChar();" class="buttonOption selected">&#9794;</button>
-                        <button onClick="char.gender = 'female';char.hair[1] = 1;char.drawMyChar()" class="buttonOption">&#9792;</button>
+                    <div id="GenderPartner" class="contentOptions">
+                        <button onClick="characterPartner.gender = 'male';characterPartner.hair[1] = 0;characterPartner.drawMyChar();" class="buttonOption selected">&#9794;</button>
+                        <button onClick="characterPartner.gender = 'female';characterPartner.hair[1] = 1;characterPartner.drawMyChar()" class="buttonOption">&#9792;</button>
                     </div>
-                    <div id="Skin tone" class="contentOptions">
-                        <button onClick="char.ethnicity = 1;char.drawMyChar()" class="buttonOption"><img style="background-color: rgb(243, 221, 202); width: 15px;height: 15px;"></button >
-                        <button onClick="char.ethnicity = 0.7;char.drawMyChar()" class="buttonOption"><img style="background-color: rgb(217, 170, 135); width: 15px;height: 15px;"></button>
-                        <button onClick="char.ethnicity = 0.5;char.drawMyChar()" class="buttonOption"><img style="background-color: rgb(174, 121, 89); width: 15px;height: 15px;"></button>
-                        <button onClick="char.ethnicity = 0.1;char.drawMyChar()" class="buttonOption"><img style="background-color:rgb(132, 83, 60); width: 15px;height: 15px;"></button>
+                    <div id="SkinTonePartner" class="contentOptions">
+                        <button onClick="characterPartner.ethnicity = 1;characterPartner.drawMyChar()" class="buttonOption"><img style="background-color: rgb(243, 221, 202); width: 15px;height: 15px;"></button >
+                        <button onClick="characterPartner.ethnicity = 0.7;characterPartner.drawMyChar()" class="buttonOption"><img style="background-color: rgb(217, 170, 135); width: 15px;height: 15px;"></button>
+                        <button onClick="characterPartner.ethnicity = 0.5;characterPartner.drawMyChar()" class="buttonOption"><img style="background-color: rgb(174, 121, 89); width: 15px;height: 15px;"></button>
+                        <button onClick="characterPartner.ethnicity = 0.1;characterPartner.drawMyChar()" class="buttonOption"><img style="background-color:rgb(132, 83, 60); width: 15px;height: 15px;"></button>
                     </div>
-                    <div id="Hair style">
-                        <button onClick="char.hair[1]-=1; if(char.hair[1] < 0)char.hair[1] = 3;char.drawMyChar()">&#8592;</button>
-                        <button onClick="char.hair[1]+=1; if(char.hair[1] > 3)char.hair[1] = 0;char.drawMyChar()" > &#8594;</button>
+                    <div id="HairStylePartner">
+                        <button onClick="characterPartner.hair[1]-=1; if(characterPartner.hair[1] < 0)characterPartner.hair[1] = 3;characterPartner.drawMyChar()">&#8592;</button>
+                        <button onClick="characterPartner.hair[1]+=1; if(characterPartner.hair[1] > 3)characterPartner.hair[1] = 0;characterPartner.drawMyChar()" > &#8594;</button>
                     </div>
-                    <div id="Eyes color">
-                        <button onClick="char.eyes -= 50; if(char.eyes < 0) char.eyes = 0;char.drawMyChar();">&#8592;</button>
-                        <button onClick="char.eyes += 50; if(char.eyes > 360)char.eyes = 360;char.drawMyChar();" > &#8594;</button>
+                    <div id="EyesColorPartner">
+                        <button onClick="characterPartner.eyes -= 50; if(characterPartner.eyes < 0) characterPartner.eyes = 0;characterPartner.drawMyChar();">&#8592;</button>
+                        <button onClick="characterPartner.eyes += 50; if(characterPartner.eyes > 360)characterPartner.eyes = 360;characterPartner.drawMyChar();" > &#8594;</button>
                     </div>
-                    <div id="Glasses1">
-                        <button onClick="char.glasses -= 48; if(char.glasses < 0) char.glasses = 0;char.drawMyChar();">&#8592;</button>
-                        <button onClick="char.glasses += 48; if(char.glasses > 48*2)char.glasses = 48*2;char.drawMyChar();" > &#8594;</button>
+                    <div id="GlassesPartner">
+                        <button onClick="characterPartner.glasses -= 48; if(characterPartner.glasses < 0) characterPartner.glasses = 0;characterPartner.drawMyChar();">&#8592;</button>
+                        <button onClick="characterPartner.glasses += 48; if(characterPartner.glasses > 48*2)characterPartner.glasses = 48*2;characterPartner.drawMyChar();" > &#8594;</button>
                     </div>
                 </div>
             </div>
@@ -300,7 +300,7 @@
             <div>
                 <div class="radio-inputs">
                     <label>
-                        <input checked id="radioGender2" class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Gender2','2')">
+                        <input checked id="radioGender2" class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('GenderYourself','2')">
                             <span class="radio-tile">
                                 <span class="radio-icon">
                                     <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/body.svg">
@@ -309,7 +309,7 @@
                             </span>
                     </label>
                     <label>
-                        <input class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Skin tone2','2')">
+                        <input class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('SkinToneYourself','2')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/body.svg">
@@ -318,7 +318,7 @@
                         </span>
                     </label>
                     <label>
-                        <input  class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Hair style2','2')">
+                        <input  class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('HairStyleYourself','2')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/hair.svg">
@@ -327,7 +327,7 @@
                         </span>
                     </label>
                     <label>
-                        <input class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Eyes color2','2')">
+                        <input class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('EyesColorYourself','2')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/eye.svg">
@@ -336,7 +336,7 @@
                         </span>
                     </label>
                     <label>
-                        <input class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('Glasses2','2')">
+                        <input class="radio-input" type="radio" name="engine2" onclick="SetCategoryPersonalization('GlassesYourself','2')">
                         <span class="radio-tile">
                             <span class="radio-icon">
                                 <img src="https://cdn.hoorayheroes.com/static/assets/web/images/personalized-interface/select-attributes/attributes/eye.svg">
@@ -347,48 +347,48 @@
                 </div>
                 <br>
                 <div class="grid-item1" id="containerCanvas2">
-                    <div class="lol">
-                        <canvas id="canvasScreen2" style="width: 100px;background-color:transparent;margin-top: 10px; border-radius: 10px;"></canvas>
+                    <div>
+                        <canvas id="canvasScreenYourself" style="width: 100px;background-color:transparent;margin-top: 10px; border-radius: 10px;"></canvas>
                     </div>
                 </div> 
                 <div class="optionsPersonalization">
-                    <div id="Gender2" class="contentOptions">
-                        <button onClick="char2.gender = 'male';char2.hair[1] = 0;char2.drawMyChar();" class="buttonOption">&#9794;</button>
-                        <button onClick="char2.gender = 'female';char2.hair[1] = 1;char2.drawMyChar()" class="buttonOption selected">&#9792;</button>
+                    <div id="GenderYourself" class="contentOptions">
+                        <button onClick="characterYourself.gender = 'male';characterYourself.hair[1] = 0;characterYourself.drawMyChar();" class="buttonOption">&#9794;</button>
+                        <button onClick="characterYourself.gender = 'female';characterYourself.hair[1] = 1;characterYourself.drawMyChar()" class="buttonOption selected">&#9792;</button>
                     </div>
-                    <div id="Skin tone2" class="contentOptions">
-                        <button onClick="char2.ethnicity = 1;char2.drawMyChar()" class="buttonOption selected"><img style="background-color: rgb(243, 221, 202); width: 15px;height: 15px;"></button >
-                        <button onClick="char2.ethnicity = 0.7;char2.drawMyChar()" class="buttonOption"><img style="background-color: rgb(217, 170, 135); width: 15px;height: 15px;"></button>
-                        <button onClick="char2.ethnicity = 0.5;char2.drawMyChar()" class="buttonOption"><img style="background-color: rgb(174, 121, 89); width: 15px;height: 15px;"></button>
-                        <button onClick="char2.ethnicity = 0.1;char2.drawMyChar()" class="buttonOption"><img style="background-color:rgb(132, 83, 60); width: 15px;height: 15px;"></button>
+                    <div id="SkinToneYourself" class="contentOptions">
+                        <button onClick="characterYourself.ethnicity = 1;characterYourself.drawMyChar()" class="buttonOption selected"><img style="background-color: rgb(243, 221, 202); width: 15px;height: 15px;"></button >
+                        <button onClick="characterYourself.ethnicity = 0.7;characterYourself.drawMyChar()" class="buttonOption"><img style="background-color: rgb(217, 170, 135); width: 15px;height: 15px;"></button>
+                        <button onClick="characterYourself.ethnicity = 0.5;characterYourself.drawMyChar()" class="buttonOption"><img style="background-color: rgb(174, 121, 89); width: 15px;height: 15px;"></button>
+                        <button onClick="characterYourself.ethnicity = 0.1;characterYourself.drawMyChar()" class="buttonOption"><img style="background-color:rgb(132, 83, 60); width: 15px;height: 15px;"></button>
                     </div>
-                    <div id="Hair style2">
-                        <button onClick="char2.hair[1]-=1; if(char2.hair[1] < 0)char2.hair[1] = 3;char2.drawMyChar()">&#8592;</button>
-                        <button onClick="char2.hair[1]+=1; if(char2.hair[1] > 3)char2.hair[1] = 0;char2.drawMyChar()"> &#8594;</button>
+                    <div id="HairStyleYourself">
+                        <button onClick="characterYourself.hair[1]-=1; if(characterYourself.hair[1] < 0)characterYourself.hair[1] = 3;characterYourself.drawMyChar()">&#8592;</button>
+                        <button onClick="characterYourself.hair[1]+=1; if(characterYourself.hair[1] > 3)characterYourself.hair[1] = 0;characterYourself.drawMyChar()"> &#8594;</button>
                     </div>
-                    <div id="Eyes color2">
-                        <button onClick="char2.eyes -= 50; if(char2.eyes < 0) char2.eyes = 0;char2.drawMyChar();">&#8592;</button>
-                        <button onClick="char2.eyes += 50; if(char2.eyes > 360)char2.eyes = 360;char2.drawMyChar();" > &#8594;</button>
+                    <div id="EyesColorYourself">
+                        <button onClick="characterYourself.eyes -= 50; if(characterYourself.eyes < 0) characterYourself.eyes = 0;characterYourself.drawMyChar();">&#8592;</button>
+                        <button onClick="characterYourself.eyes += 50; if(chacharacterYourselfr2.eyes > 360)characterYourself.eyes = 360;characterYourself.drawMyChar();" > &#8594;</button>
                     </div>
-                    <div id="Glasses2">
-                        <button onClick="char2.glasses -= 48; if(char2.glasses < 0) char2.glasses = 0;char2.drawMyChar();">&#8592;</button>
-                        <button onClick="char2.glasses += 48; if(char2.glasses > 48*2)char2.glasses = 48*2;char2.drawMyChar();" > &#8594;</button>
+                    <div id="GlassesYourself">
+                        <button onClick="characterYourself.glasses -= 48; if(characterYourself.glasses < 0) characterYourself.glasses = 0;characterYourself.drawMyChar();">&#8592;</button>
+                        <button onClick="characterYourself.glasses += 48; if(characterYourself.glasses > 48*2)characterYourself.glasses = 48*2;characterYourself.drawMyChar();" > &#8594;</button>
                     </div>
                 </div>
             </div>
             <button class="save-button" onclick="updateBookImages(),updatePreviewImage(),SaveContinue('section-story','container-preview-history','section-yourself','personalize-yourself')">SAVE AND CONTINUE</button>
         </div>
         <img src="data:image/png;base64,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"  
-            style="display: none"  id="bodyPartner">
+            style="display: none"  id="bodyCharacter">
 
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAAAwCAYAAAD+WvNWAAAD3klEQVR4nO3XT0gcZxjH8a+mGCwk5tBqNya10GZpNRDTNiwhsAkrNAeVXahs3UC3kj+kO7D0sIR6bD00jVJKbNFIaj11cUFYaB1oamyDPVghFKHVg5bQwW6JSasIgf4D04Mzm3Vd12aiaaG/z0Xmnecdn/d55p2dARERERERERERERERERERERERERERERGR/6kSN5M+O3sYX72foeHBNedamlqpqPWuGV+anlk3fmJyjLmffs7O3X70lJu01tXTWMOZiykWR9IMDQ+yd89ufPX+NXkuTc8AUFHrpbS6Lju+nJladS5/Tn7+/Z0dGKa1qWv464dvWM5M0d/Zkc3fZf3L7aHfnPiJyTGa+8Zd5fWIq1mQTd4wrbv20GxPY41vYnJs8aUCC5iYHHPi3wFagJmexpomp6EOp1GbyTAtzly0mz98b7y/s2NNbEtTK7By0+QbGh5cNT83Pv//bbbFkfSqGyOn/rPA78CXPY01b0xMjrFB/YeBWeCFnsaaQ/n1v1+lLueVe6KJrz3RxF1vLOmM7TNMa6HYJMO0BryxZALYBxzyRBOXPdHEALAXVhZZGbvgMqXiFkfSq45zGnDVMK2bhml94ORQSE4D3jJM65phWjtyr+PYig0AUBm7wBfJj7LHnmjiQ080MeeNJZ8B9gNthmldLXYNw7Q+9caSO4GzQK0nmvjEE02cBw64zcvtDbQN2B0Kx5kf7QKgwnuQdKobX72/4ARfvZ90qvvw/GhXmR1fGQrHTwNtQMAwLdeP0X+iQAPe9kQTX3ljyQagCjhmmNZ7xa5hmFbKG0ueBp4H3vdEE9c80cR1oBa2dgMANPeN5z7dgqFwfE9O/XemU93PbVD/p+ZHu1604x8NheMngHbgjtuc3N5Ad4DrAFUN53D+hsLxlYvmvD/kHofC8V9z420p4A+XedyXvAa0hcLxYzkN2J9Odfs2aED5/GhXNbCjwnvwVCgcPwrMA3NbvQEK+BZYyKv/NihafwrU/wawy20Srt6BmvvGuVXvfwUIB4IRAsFI9pzzO52/CHt8OhCMPBkIRrKVPrKQaa18uIV3fA68VtVwbvvSzAm7AZFnb19qp7S6btU7UGl1HUzPEArHd1Vdewwn3vYd7jeiK3b9XwbOB4KRVwPBSIV96vsN6v9Lfr+OLGSefpD6u/oKg3tfYuslXIzTHOcL5iHvXABu9b5Z9vjr716OXeEAUAb82Hucm3+OfXyy0FqWM1OU+U8OxK5QycoTuKT3ONy+1B7eyp+t9TxA/cuXM1NPACV2/W/8G/UXERERERERERERERERERERERERERER+S/4G2/xiToe/DPuAAAAAElFTkSuQmCC"  
-            style="display: none;"  id="eyesPartner">
+            style="display: none;"  id="eyesCharacter">
 
         <img src="data:image/png;base64,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" 
-            style="display: none" id="hairPartner"/>
+            style="display: none" id="hairCharacter"/>
 
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAAAwCAYAAABuSYqZAAAAa0lEQVR42u3WMQoAIQwEQH98D/GT95NcJYjFFVpEZQa2CGmXkFIAAAAAAAAAAAAAAACARNFlZp/qfWq0zOw5q6grc3pRV2bOL2v8XNPtyzpGWV1WlxU/q58VAAAAAAAAAAAAAAAAAAAAuMkH+Y5nyVuMj9cAAAAASUVORK5CYII=" 
-            style="display: none;" id="glasses">
+            style="display: none;" id="glassesCharacter">
 
     </div>
     <div class="steps-container" id="section-yourself">
@@ -1004,5 +1004,6 @@
         </div>
     </footer>
     <script src="main.js"></script>
+    <script src="navigation.js"></script>
 </body>
 </html>
