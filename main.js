@@ -145,13 +145,11 @@ optionSingles.forEach(contenedor => {
       this.classList.add('selected');
     });
   });
-
-  // Evitar deselección al hacer clic fuera del contenedor
   document.addEventListener('click', function(event) {
     if (!contenedor.contains(event.target)) {
       let selectedButton = contenedor.querySelector('.buttonOption.selected');
       if (selectedButton) {
-        selectedButton.classList.add('selected'); // Mantener el botón seleccionado
+        selectedButton.classList.add('selected');
       }
     }
   });
@@ -193,7 +191,7 @@ function previewOrSelect(imgElement, imageSrc, previewIndex) {
 let actualImageSrc;
 let actualPreviewIndex;
 function updatePreviewImage() {
-  EditSection2(actualImageSrc, actualPreviewIndex);
+  CreatePreviewPage(actualImageSrc, actualPreviewIndex);
 }
 function updateBookImages() {
   cargarImagenes();
@@ -654,7 +652,7 @@ function pruebaaaa(canva2s,src,i){
 
 // Función para previsualizar imagen
 function previewImage(imageSrc, previewIndex) {
-    EditSection2(imageSrc, previewIndex);
+    CreatePreviewPage(imageSrc, previewIndex);
     actualImageSrc = imageSrc;
     actualPreviewIndex = previewIndex;
 }
@@ -1272,249 +1270,119 @@ function EditSection (blockToDisplay, sectionToHide){
   }
 }
 
-function EditSection2 (z,previewIndex){
-  var canvas = document.getElementById("canvasScreen3");
+function CreatePreviewPage (urlImage,previewIndex){
+  var canvas = document.getElementById("canvasPreviewPage");
   var context = canvas.getContext("2d");
 
-  // Activar el suavizado de imagen
   context.imageSmoothingEnabled = true;
-
-
-  // Cargar la imagen de fondo desde una URL
   var img = new Image();
-  img.src = z; // La URL o el recurso que pasas para la imagen de fondo
+  img.src = urlImage; 
   
-  // Esperar a que la imagen de fondo se cargue antes de dibujarla
   img.onload = function() {
-    // Ajustar el tamaño del canvas al tamaño de la imagen de fondo
+
     canvas.width = img.width;
     canvas.height = img.height;
 
-    // Limpiar el canvas antes de dibujar
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Dibujar la imagen de fondo
     context.drawImage(img, 0, 0, img.width, img.height);
     
-    
-    // Crear las imágenes x e y a partir de los otros canvas
-    var x = new Image();
-    var y = new Image();
+    var imagePartner = new Image();
+    var imageYourself = new Image();
 
-    // Asignar el contenido de otros canvas a las imágenes x y y
-    x.src = canvasScreenPartner.toDataURL("image/png"); // canvasScreen ya debe existir
-    y.src = canvasScreenYourself.toDataURL("image/png"); // canvasScreen2 ya debe existir
-    // Esperar a que las imágenes x e y se carguen antes de dibujarlas
+    imagePartner.src = canvasScreenPartner.toDataURL("image/png");
+    imageYourself.src = canvasScreenYourself.toDataURL("image/png");
+
     switch(previewIndex){
       case 0:
-        x.onload = function() {
-          context.drawImage(x, 250, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
-    
-          y.onload = function() {
-            context.drawImage(y, 150, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
-            
-            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 800, 50, 200, 30);
-          
-            var canvas2 = document.querySelectorAll("#canvasBook1");
-        var contextList = [];
-        canvas2.forEach((canvas5) => {
-        var context2 = canvas5.getContext("2d");
-        context2.imageSmoothingEnabled = true;
-        context2.clearRect(0, 0, canvas5.width, canvas5.height);
-        canvas5.width = img.width;
-        canvas5.height = img.height;
-        contextList.push(context2);
-        });
-        var toggle = true;  // Variable para alternar entre -270 y 280
+        imagePartner.onload = function () {
+          context.drawImage(imagePartner, 250, 200, 100, 100); 
 
-       
-        contextList.forEach((context3) => {
-        if (toggle) {
-        context3.drawImage(canvas, 280, 0, img.width, img.height);
-        } else {
-        context3.drawImage(canvas, -270, 0, img.width, img.height);
-        }
-        toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-        });
+          imageYourself.onload = function () {
+            context.drawImage(imageYourself, 150, 200, 100, 100);
+
+            insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 800, 50, 200, 30);
+
+            LoadPageInBook("#canvasBook1", img, canvas);
           };
         };
         
       break;
       case 1:
-        x.onload = function() {
-          context.drawImage(x, 900, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 900, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 650, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 650, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 200, 50, 200, 30);
-            var canvas2 = document.querySelectorAll("#canvasBook2");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
+            
+            LoadPageInBook("#canvasBook2", img, canvas);
             
           };
         };
         
         break;
       case 2:
-        x.onload = function() {
-          context.drawImage(x, 950, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 950, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 700, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 700, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 150, 100, 200, 30);
 
-            var canvas2 = document.querySelectorAll("#canvasBook3");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
+            LoadPageInBook("#canvasBook3", img, canvas);
           };
         };
         
         break;
       case 3:
-        x.onload = function() {
-          context.drawImage(x, 750, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 750, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 900, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 900, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 200, 50, 200, 30);
 
-            var canvas2 = document.querySelectorAll("#canvasBook4");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
+            LoadPageInBook("#canvasBook4", img, canvas);
           };
         };
         break;
       case 4:
-        x.onload = function() {
-          context.drawImage(x, 200, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 200, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 400, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 400, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 700, 50, 200, 30);
-            var canvas2 = document.querySelectorAll("#canvasBook5");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
+            LoadPageInBook("#canvasBook5", img, canvas);
           
           };
         };
         break;
       case 5:
-        x.onload = function() {
-          context.drawImage(x, 200, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 200, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 400, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 400, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 800, 100, 200, 30);
-            
-            var canvas2 = document.querySelectorAll("#canvasBook6");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
 
           
+            LoadPageInBook("#canvasBook6", img, canvas);
           };
         };
         break;
       case 6:
-        x.onload = function() {
-          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
@@ -1523,37 +1391,17 @@ function EditSection2 (z,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
 
-            var canvas2 = document.querySelectorAll("#canvasBook7");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
+            LoadPageInBook("#canvasBook7", img, canvas);
           
           };
         };
         break;
       case 7:
-        x.onload = function() {
-          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
@@ -1561,38 +1409,18 @@ function EditSection2 (z,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
-            var canvas2 = document.querySelectorAll("#canvasBook8");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
+            LoadPageInBook("#canvasBook8", img, canvas);
           
           
           };
         };
         break;
       case 8:
-        x.onload = function() {
-          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
@@ -1600,39 +1428,17 @@ function EditSection2 (z,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
-            var canvas2 = document.querySelectorAll("#canvasBook9");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
-          
-          
-          
+            
+            LoadPageInBook("#canvasBook9", img, canvas);
           };
         };
         break;
       case 9:
-        x.onload = function() {
-          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
@@ -1640,40 +1446,16 @@ function EditSection2 (z,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
-            var canvas2 = document.querySelectorAll("#canvasBook10");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
-          
-          
-          
-          
+            LoadPageInBook("#canvasBook10", img, canvas);
           };
         };
         break;
       case 10:
-        x.onload = function() {
-          context.drawImage(x, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
+        imagePartner.onload = function() {
+          context.drawImage(imagePartner, 100, 200, 100, 100); // Dibujar imagen x (ajustar la posición y tamaño según necesites)
     
-          y.onload = function() {
-            context.drawImage(y, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
+          imageYourself.onload = function() {
+            context.drawImage(imageYourself, 950, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 320, 60, 200, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 640, 90, 150, 25);
@@ -1681,30 +1463,8 @@ function EditSection2 (z,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
-          
-            var canvas2 = document.querySelectorAll("#canvasBook11");
-            var contextList = [];
-            canvas2.forEach((canvas5) => {
-            var context2 = canvas5.getContext("2d");
-            context2.imageSmoothingEnabled = true;
-            context2.clearRect(0, 0, canvas5.width, canvas5.height);
-            canvas5.width = img.width;
-            canvas5.height = img.height;
-            contextList.push(context2);
-            });
-            var toggle = true;  // Variable para alternar entre -270 y 280
-    
-           
-            contextList.forEach((context3) => {
-            if (toggle) {
-            context3.drawImage(canvas, 280, 0, img.width, img.height);
-            } else {
-            context3.drawImage(canvas, -270, 0, img.width, img.height);
-            }
-            toggle = !toggle;  // Cambia el valor de toggle en cada iteración
-            });
-          
-          
+  
+            LoadPageInBook("#canvasBook11", img, canvas);
           };
         };
         break;
@@ -1716,6 +1476,30 @@ function EditSection2 (z,previewIndex){
   };
   
 };
+
+function LoadPageInBook(idCanvas, img, canvasPreview) {
+  var allCanvasPage = document.querySelectorAll(idCanvas);
+  
+  var contextList = [];
+  allCanvasPage.forEach((canva) => {
+    var context = canva.getContext("2d");
+    context.imageSmoothingEnabled = true;
+    context.clearRect(0, 0, canva.width, canva.height);
+    canva.width = img.width;
+    canva.height = img.height;
+    contextList.push(context);
+  });
+  var toggle = true; 
+  contextList.forEach((context) => {
+    if (toggle) {
+      context.drawImage(canvasPreview, 280, 0, img.width, img.height);
+    } else {
+      context.drawImage(canvasPreview, -270, 0, img.width, img.height);
+    }
+    toggle = !toggle; 
+  });
+}
+
 function ClearSection2 (){
   var canvas = document.getElementById("canvasScreen3");
   var context = canvas.getContext("2d");

@@ -880,7 +880,7 @@ header{
     background-position: center;
     background-size: cover;
 }
-#canvasScreen3 {
+#canvasPreviewPage {
     width: 100%;
     height: 100%;
     object-fit: cover;
