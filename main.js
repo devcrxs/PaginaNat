@@ -1,15 +1,15 @@
 const canvases = [
-  { id: "#canvasBook1", src: "imgs/BookBackgrounds/01.webp" },
-  { id: "#canvasBook2", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z19.webp?version=1689150760" },
-  { id: "#canvasBook3", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z18.webp?version=1689150760" },
-  { id: "#canvasBook4", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z03.webp?version=1689150760" },
-  { id: "#canvasBook5", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z21.webp?version=1689150760" },
-  { id: "#canvasBook6", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z02.webp?version=1689150760" },
-  { id: "#canvasBook7", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" },
-  { id: "#canvasBook8", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" },
-  { id: "#canvasBook9", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" },
-  { id: "#canvasBook10", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" },
-  { id: "#canvasBook11", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" }
+  { id: ".canvasBook1", src: "imgs/BookBackgrounds/01.webp" },
+  { id: ".canvasBook2", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z19.webp?version=1689150760" },
+  { id: ".canvasBook3", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z18.webp?version=1689150760" },
+  { id: ".canvasBook4", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z03.webp?version=1689150760" },
+  { id: ".canvasBook5", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z21.webp?version=1689150760" },
+  { id: ".canvasBook6", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z02.webp?version=1689150760" },
+  { id: ".canvasBook7", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" },
+  { id: ".canvasBook8", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" },
+  { id: ".canvasBook9", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" },
+  { id: ".canvasBook10", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" },
+  { id: ".canvasBook11", src: "https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/04_stories/Z05.webp?version=1689150760" }
 ]; 
 
 
@@ -46,7 +46,7 @@ let contextPartner = canvasScreenPartner.getContext("2d");
 let contextYourself = canvasScreenYourself.getContext("2d");
 //new NewChar(gender,race,ethn,hair,eyes);
 function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
-  if (gender == undefined) {
+  if (gender === undefined) {
     gender = "male";
     skin = 1;
     hair = [[0], [4], [48, 246, 336]];
@@ -73,10 +73,10 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
     actualCharacter.clearRect(0, 0, 48, 48);
     actualCharacter.filter ="brightness(" + this.ethnicity + ")";
 
-    if (this.gender == "male") {
+    if (this.gender === "male") {
       actualCharacter.drawImage(bodyCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
     } 
-    else if (this.gender == "female") {
+    else if (this.gender === "female") {
       actualCharacter.drawImage(bodyCharacter, 192, 0, 48, 48, 0, 0, 48, 48);
     } 
     else {
@@ -84,7 +84,7 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
     }
 
     actualCharacter.filter = "hue-rotate(" + this.eyes + "deg) brightness(1)";
-    actualCharacter.drawImage(eyesCharacter, 0 + 48, 0, 48, 48, 0, 0, 48, 48);
+    actualCharacter.drawImage(eyesCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
 
     actualCharacter.filter ="hue-rotate(" +this.hair[0] +"deg) brightness(" +Number(1 - this.hair[0] / 1000) +")";
     actualCharacter.drawImage(hairCharacter,this.hair[2][this.hair[1]],0,48,48,0,0,48,48);
@@ -102,7 +102,7 @@ function SetCategoryPersonalization (section,type) {
   switch(type){
     case '1':
       if (actualSectionPartner.trim().length === 0) {
-        actualSectionPartner = new String(section);
+        actualSectionPartner = String(section);
         document.getElementById(actualSectionPartner).style.display = "block";
         return;
       }
@@ -113,7 +113,7 @@ function SetCategoryPersonalization (section,type) {
 
     case '2':
       if (actualSectionYourself.trim().length === 0) {
-        actualSectionYourself = new String(section);
+        actualSectionYourself = String(section);
         document.getElementById(actualSectionYourself).style.display = "block";
         return;
       }
@@ -123,7 +123,7 @@ function SetCategoryPersonalization (section,type) {
     break;
   }
   
-};
+}
 window.onload = function() {
   SetCategoryPersonalization('GenderPartner','1');
   SetCategoryPersonalization('GenderYourself','2');
@@ -181,7 +181,7 @@ function previewOrSelect(imgElement, imageSrc, previewIndex) {
 
     if (selectedCount >= maxSelected) {
         disableUnselectedImages();
-        var button = document.getElementById("button-save-preview");
+        let button = document.getElementById("button-save-preview");
         button.disabled = false;
     }
 }
@@ -195,7 +195,7 @@ function UpdatePreviewImages() {
 function UpdateBook() {
   LoadDefaultImagesBook();
   setTimeout(() => {
-    for (var i = 0; i < selectedCount; i++) {
+    for (let i = 0; i < selectedCount; i++) {
       CreatePageBook("page" + (i + 1),canvases[i].src, i);
     }
 }, 100);
@@ -235,7 +235,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             context.drawImage(contextYourself, 150, 200, 100, 100);
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 800, 50, 200, 30);
-            LoadPageInBook("#canvasBook1", img, canvas);
+            LoadPageInBook(".canvasBook1", img, canvas);
           };
         };
         
@@ -248,7 +248,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             context.drawImage(contextYourself, 650, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 200, 50, 200, 30);
-            LoadPageInBook("#canvasBook2", img, canvas);    
+            LoadPageInBook(".canvasBook2", img, canvas);
           };
         };
         
@@ -262,7 +262,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 150, 100, 200, 30);
 
-            LoadPageInBook("#canvasBook3", img, canvas);
+            LoadPageInBook(".canvasBook3", img, canvas);
           };
         };
         
@@ -276,7 +276,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 200, 50, 200, 30);
 
-            LoadPageInBook("#canvasBook4", img, canvas);
+            LoadPageInBook(".canvasBook4", img, canvas);
           };
         };
         break;
@@ -288,7 +288,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             context.drawImage(contextYourself, 400, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 700, 50, 200, 30);
-            LoadPageInBook("#canvasBook5", img, canvas);
+            LoadPageInBook(".canvasBook5", img, canvas);
           };
         };
         break;
@@ -300,7 +300,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             context.drawImage(contextYourself, 400, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 800, 100, 200, 30);
-            LoadPageInBook("#canvasBook6", img, canvas);  
+            LoadPageInBook(".canvasBook6", img, canvas);
           };
         };
         break;
@@ -318,7 +318,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
 
-            LoadPageInBook("#canvasBook7", img, canvas);
+            LoadPageInBook(".canvasBook7", img, canvas);
           
           };
         };
@@ -336,7 +336,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
-            LoadPageInBook("#canvasBook8", img, canvas);
+            LoadPageInBook(".canvasBook8", img, canvas);
           };
         };
         break;
@@ -353,7 +353,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
-            LoadPageInBook("#canvasBook9", img, canvas);
+            LoadPageInBook(".canvasBook9", img, canvas);
           };
         };
         break;
@@ -370,7 +370,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
-            LoadPageInBook("#canvasBook10", img, canvas);
+            LoadPageInBook(".canvasBook10", img, canvas);
           };
         };
         break;
@@ -388,7 +388,7 @@ function CreatePageBook(canvasPage,srcImage,indexPage){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
           
-            LoadPageInBook("#canvasBook11", img, canvas);
+            LoadPageInBook(".canvasBook11", img, canvas);
           };
         };
         break;
@@ -414,7 +414,7 @@ function deselectImage(buttonElement) {
 
         if (selectedCount < maxSelected) {
             enableAllImages();
-            var button = document.getElementById("button-save-preview");
+            let button = document.getElementById("button-save-preview");
             button.disabled = true;
             UpdateBook();
         }
@@ -527,29 +527,29 @@ function setMaxLengthResponsive() {
 }
 
 
-LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/01.webp?version=1729054851","#canvasBookDedication");
-LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/02.webp?version=1729054851","#canvasBookStart");
-LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/03.webp?version=1729054851","#canvasBookStart2");
-LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/06.webp?version=1729054851","#canvasBookEnd");
-LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/05.webp?version=1729054851","#canvasBookEnd2");
+LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/01.webp?version=1729054851",".canvasBookDedication");
+LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/02.webp?version=1729054851",".canvasBookStart");
+LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/03.webp?version=1729054851",".canvasBookStart2");
+LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/06.webp?version=1729054851",".canvasBookEnd");
+LoadImagesStaticBooks("https://assets.hoorayheroes.com/books/loveyou-mf-v2/default/pages/C01/M/05.webp?version=1729054851",".canvasBookEnd2");
 
-function LoadImagesStaticBooks(url, id) {
+function LoadImagesStaticBooks(url, id) {//TODO refactor
   let img = new Image();
   img.src = url; // La URL o el recurso que pasas para la imagen de fondo
 
   // Esperar a que la imagen de fondo se cargue antes de dibujarla
   img.onload = function () {
-    var canvasprueba = document.querySelectorAll(id);
-    var contextprueba3 = [];
-    canvasprueba.forEach((canvas5) => {
-      var context2 = canvas5.getContext("2d");
-      context2.imageSmoothingEnabled = true;
+      let canvasprueba = document.querySelectorAll(id);
+      let contextprueba3 = [];
+      canvasprueba.forEach((canvas5) => {
+          let context2 = canvas5.getContext("2d");
+          context2.imageSmoothingEnabled = true;
       context2.clearRect(0, 0, canvas5.width, canvas5.height);
       canvas5.width = img.width;
       canvas5.height = img.height;
       contextprueba3.push(context2);
     });
-    var toggelprueba = true; // Variable para alternar entre -270 y 280
+      let toggelprueba = true; // Variable para alternar entre -270 y 280
 
     contextprueba3.forEach((context3) => {
       if (toggelprueba) {
@@ -631,8 +631,8 @@ let maxLocation = numOfPapers + 1;
 
 function openBook(){
   book.style.transform = "translateX(50%)";
-  var x = window.matchMedia("(max-width: 600px)")
-  if(x.matches){
+    let x = window.matchMedia("(max-width: 600px)");
+    if(x.matches){
     return;
   }
   prevBtn.style.transform = "translateX(-280px)";
@@ -645,14 +645,14 @@ function closeBook(isAtBeginning){
   else{
     book.style.transform = "translateX(100%)";
   }
-  var x = window.matchMedia("(max-width: 600px)")
-  if(x.matches){
+    let x = window.matchMedia("(max-width: 600px)");
+    if(x.matches){
     return;
   }
   prevBtn.style.transform = "translateX(0px)";
   nextBtn.style.transform = "translateX(0px)";
 }
-const mediaQuery = window.matchMedia("(max-width: 500px)");
+window.matchMedia("(max-width: 500px)");
 function goNextPage(){
   if(currentLocation < maxLocation){
     switch(currentLocation){
@@ -969,7 +969,7 @@ function SaveContinue(sectionToHide, blockToDisplay, sectionToDisplay, blockToHi
   
   // Obtener los elementos con la clase 'edit' dentro de la sección oculta
   let elements = actualSection.querySelectorAll(".edit");
-  let elements2 = actualSection.querySelectorAll("#info-section");
+  let elements2 = actualSection.querySelectorAll(".info-section");
   
   // Agregar cada elemento al Set individualmente
   elements.forEach(element => sectionsValid.add(element));
@@ -1004,12 +1004,12 @@ function EditSection (blockToDisplay, sectionToHide){
 }
 
 function CreatePreviewImage (urlImage,previewIndex){
-  var canvas = document.getElementById("canvasPreviewPage");
-  var context = canvas.getContext("2d");
+    let canvas = document.getElementById("canvasPreviewPage");
+    let context = canvas.getContext("2d");
 
-  context.imageSmoothingEnabled = true;
-  var img = new Image();
-  img.src = urlImage; 
+    context.imageSmoothingEnabled = true;
+    let img = new Image();
+    img.src = urlImage;
   
   img.onload = function() {
 
@@ -1019,11 +1019,11 @@ function CreatePreviewImage (urlImage,previewIndex){
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     context.drawImage(img, 0, 0, img.width, img.height);
-    
-    var imagePartner = new Image();
-    var imageYourself = new Image();
 
-    imagePartner.src = canvasScreenPartner.toDataURL("image/png");
+      let imagePartner = new Image();
+      let imageYourself = new Image();
+
+      imagePartner.src = canvasScreenPartner.toDataURL("image/png");
     imageYourself.src = canvasScreenYourself.toDataURL("image/png");
 
     switch(previewIndex){
@@ -1036,7 +1036,7 @@ function CreatePreviewImage (urlImage,previewIndex){
 
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 800, 50, 200, 30);
 
-            LoadPageInBook("#canvasBook1", img, canvas);
+            LoadPageInBook(".canvasBook1", img, canvas);
           };
         };
         
@@ -1050,7 +1050,7 @@ function CreatePreviewImage (urlImage,previewIndex){
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 200, 50, 200, 30);
             
-            LoadPageInBook("#canvasBook2", img, canvas);
+            LoadPageInBook(".canvasBook2", img, canvas);
             
           };
         };
@@ -1065,7 +1065,7 @@ function CreatePreviewImage (urlImage,previewIndex){
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 150, 100, 200, 30);
 
-            LoadPageInBook("#canvasBook3", img, canvas);
+            LoadPageInBook(".canvasBook3", img, canvas);
           };
         };
         
@@ -1079,7 +1079,7 @@ function CreatePreviewImage (urlImage,previewIndex){
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 200, 50, 200, 30);
 
-            LoadPageInBook("#canvasBook4", img, canvas);
+            LoadPageInBook(".canvasBook4", img, canvas);
           };
         };
         break;
@@ -1091,7 +1091,7 @@ function CreatePreviewImage (urlImage,previewIndex){
             context.drawImage(imageYourself, 400, 200, 100, 100); // Dibujar imagen y (ajustar la posición y tamaño según necesites)
             
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 700, 50, 200, 30);
-            LoadPageInBook("#canvasBook5", img, canvas);
+            LoadPageInBook(".canvasBook5", img, canvas);
           
           };
         };
@@ -1106,7 +1106,7 @@ function CreatePreviewImage (urlImage,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos automáticos.", 800, 100, 200, 30);
 
           
-            LoadPageInBook("#canvasBook6", img, canvas);
+            LoadPageInBook(".canvasBook6", img, canvas);
           };
         };
         break;
@@ -1124,7 +1124,7 @@ function CreatePreviewImage (urlImage,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
 
-            LoadPageInBook("#canvasBook7", img, canvas);
+            LoadPageInBook(".canvasBook7", img, canvas);
           
           };
         };
@@ -1142,7 +1142,7 @@ function CreatePreviewImage (urlImage,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
-            LoadPageInBook("#canvasBook8", img, canvas);
+            LoadPageInBook(".canvasBook8", img, canvas);
           
           
           };
@@ -1162,7 +1162,7 @@ function CreatePreviewImage (urlImage,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
             
-            LoadPageInBook("#canvasBook9", img, canvas);
+            LoadPageInBook(".canvasBook9", img, canvas);
           };
         };
         break;
@@ -1179,7 +1179,7 @@ function CreatePreviewImage (urlImage,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea.", 640, 255, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
-            LoadPageInBook("#canvasBook10", img, canvas);
+            LoadPageInBook(".canvasBook10", img, canvas);
           };
         };
         break;
@@ -1197,29 +1197,29 @@ function CreatePreviewImage (urlImage,previewIndex){
             insertTextWithLineBreaks(context, "Este es un texto largo que necesita un salto de línea. Aquí es donde se aplicarán los saltos.", 345, 300, 150, 25);
             insertTextWithLineBreaks(context, "Este es un texto .", 685, 360, 150, 25);
   
-            LoadPageInBook("#canvasBook11", img, canvas);
+            LoadPageInBook(".canvasBook11", img, canvas);
           };
         };
         break;
 
     } 
   };
-};
+}
 
 function LoadPageInBook(idCanvas, img, canvasPreview) {
-  var allCanvasPage = document.querySelectorAll(idCanvas);
-  
-  var contextList = [];
-  allCanvasPage.forEach((canva) => {
-    var context = canva.getContext("2d");
-    context.imageSmoothingEnabled = true;
+    let allCanvasPage = document.querySelectorAll(idCanvas);
+
+    let contextList = [];
+    allCanvasPage.forEach((canva) => {
+        let context = canva.getContext("2d");
+        context.imageSmoothingEnabled = true;
     context.clearRect(0, 0, canva.width, canva.height);
     canva.width = img.width;
     canva.height = img.height;
     contextList.push(context);
   });
-  var toggle = true; 
-  contextList.forEach((context) => {
+    let toggle = true;
+    contextList.forEach((context) => {
     if (toggle) {
       context.drawImage(canvasPreview, 280, 0, img.width, img.height);
     } else {
@@ -1229,15 +1229,15 @@ function LoadPageInBook(idCanvas, img, canvasPreview) {
   });
 }
 function insertTextWithLineBreaks(context, text, x, y, maxWidth, lineHeight) {
-  var words = text.split(" ");
-  var line = "";
-  var lines = [];
+    let words = text.split(" ");
+    let line = "";
+    let lines = [];
 
-  // Crear las líneas ajustando las palabras al ancho máximo
-  for (var i = 0; i < words.length; i++) {
-    var testLine = line + words[i] + " ";
-    var testWidth = context.measureText(testLine).width;
-    if (testWidth > maxWidth && i > 0) {
+    // Crear las líneas ajustando las palabras al ancho máximo
+  for (let i = 0; i < words.length; i++) {
+      let testLine = line + words[i] + " ";
+      let testWidth = context.measureText(testLine).width;
+      if (testWidth > maxWidth && i > 0) {
       lines.push(line);  // Empuja la línea completa al array de líneas
       line = words[i] + " ";  // Inicia una nueva línea
     } else {
@@ -1247,20 +1247,20 @@ function insertTextWithLineBreaks(context, text, x, y, maxWidth, lineHeight) {
   lines.push(line);  // Agregar la última línea restante
 
   // Dibujar cada línea en el canvas
-  for (var j = 0; j < lines.length; j++) {
+  for (let j = 0; j < lines.length; j++) {
     context.fillText(lines[j], x, y + j * lineHeight);
   }
 }
 
 function SetDedicationBook(){
-  currentDedication = document.querySelector("#textAreaDedication").value;
-  dedicationTextBook = document.querySelector("#dedicationTextBook");
+    let currentDedication = document.querySelector("#textAreaDedication").value;
+    let dedicationTextBook = document.querySelector("#dedicationTextBook");
   if(currentDedication.length !== 0){
     dedicationTextBook.textContent = currentDedication;
 
   }
 }
 
-var characterPartner = new NewChar(contextPartner);
-var characterYourself = new NewChar(contextYourself,'female');
+let characterPartner = new NewChar(contextPartner);
+let characterYourself = new NewChar(contextYourself, 'female');
      

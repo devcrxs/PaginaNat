@@ -37,7 +37,6 @@ header{
 }
 .logo{
     font-size: 28px;
-    font-weight: bold;
     color: #08b5e5;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 600;
@@ -888,15 +887,15 @@ header{
     background-size: cover;
     z-index: 100;
 }
-#canvasBook1,#canvasBook2,
-#canvasBook3,#canvasBook4,
-#canvasBook5,#canvasBook6,
-#canvasBook7,#canvasBook8,
-#canvasBook9,#canvasBook10,
-#canvasBook11,#canvasBook12,
-#canvasBookDedication, #canvasBookStart,
-#canvasBookStart2, #canvasBookEnd,
-#canvasBookEnd2 {
+.canvasBook1,.canvasBook2,
+.canvasBook3,.canvasBook4,
+.canvasBook5,.canvasBook6,
+.canvasBook7,.canvasBook8,
+.canvasBook9,.canvasBook10,
+.canvasBook11,.canvasBook12,
+.canvasBookDedication, .canvasBookStart,
+.canvasBookStart2, .canvasBookEnd,
+.canvasBookEnd2 {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1195,7 +1194,7 @@ footer {
     height: 40px;
 }
 
-#info-section{
+.info-section{
     text-align: center; 
     width: 500px;
 }
@@ -1401,7 +1400,7 @@ footer {
     overflow-y: hidden;
 }
 
-#info-section{
+.info-section{
     text-align: center;
     align-items: center;
     width: 300px;
