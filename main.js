@@ -103,23 +103,23 @@ function SetCategoryPersonalization (section,type) {
     case '1':
       if (actualSectionPartner.trim().length === 0) {
         actualSectionPartner = String(section);
-        document.getElementById(actualSectionPartner).style.display = "block";
+        document.getElementById(actualSectionPartner).style.display = "flex";
         return;
       }
       document.getElementById(actualSectionPartner).style.display = "none";
       actualSectionPartner = section;
-      document.getElementById(actualSectionPartner).style.display = "block";
+      document.getElementById(actualSectionPartner).style.display = "flex";
     break;
 
     case '2':
       if (actualSectionYourself.trim().length === 0) {
         actualSectionYourself = String(section);
-        document.getElementById(actualSectionYourself).style.display = "block";
+        document.getElementById(actualSectionYourself).style.display = "flex";
         return;
       }
       document.getElementById(actualSectionYourself).style.display = "none";
       actualSectionYourself = section;
-      document.getElementById(actualSectionYourself).style.display = "block";
+      document.getElementById(actualSectionYourself).style.display = "flex";
     break;
   }
 
