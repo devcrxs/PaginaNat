@@ -32,6 +32,7 @@ let bodyCharacter = document.getElementById("bodyCharacter");
 let eyesCharacter = document.getElementById("eyesCharacter");
 let hairCharacter = document.getElementById("hairCharacter");
 let glassesCharacter = document.getElementById("glassesCharacter");
+let bodyLineart = document.getElementById("bodyLineart");
 
 
 let canvasScreenPartner = document.getElementById("canvasScreenPartner");
@@ -48,13 +49,13 @@ let contextYourself = canvasScreenYourself.getContext("2d");
 function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
   if (gender === undefined) {
     gender = "male";
-    skin = 1;
+    skin = "rgb(243, 221, 202,1)";
     hair = [[0], [4], [48, 246, 336]];
     hair[1] = 0;
     eyes = 0;
     glasses = 0;
   }else{
-    skin = 1;
+    skin = "rgb(243, 221, 202,1)";
     hair = [[0], [4], [48, 246, 336]];
     hair[1] = 1;
     eyes = 0;
@@ -68,30 +69,49 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
   this.glasses = glasses;
 
   this.drawMyChar = () => {
-
-
+    // Limpiar el canvas principal
     actualCharacter.clearRect(0, 0, 48, 48);
-    actualCharacter.filter ="brightness(" + this.ethnicity + ")";
 
+    // Crear un canvas temporal para el color del cuerpo
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = 48;
+    tempCanvas.height = 48;
+    const tempCtx = tempCanvas.getContext('2d');
+
+    // Dibujar el cuerpo base en el canvas temporal
     if (this.gender === "male") {
-      actualCharacter.drawImage(bodyCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
-    }
-    else if (this.gender === "female") {
-      actualCharacter.drawImage(bodyCharacter, 192, 0, 48, 48, 0, 0, 48, 48);
-    }
-    else {
-        actualCharacter.drawImage(bodyCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
+        tempCtx.drawImage(bodyCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
+    } else if (this.gender === "female") {
+        tempCtx.drawImage(bodyCharacter, 192, 0, 48, 48, 0, 0, 48, 48);
+    } else {
+        tempCtx.drawImage(bodyCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
     }
 
-    actualCharacter.filter = "hue-rotate(" + this.eyes + "deg) brightness(1)";
+    // Aplicar color con transparencia para mantener detalles
+    tempCtx.globalCompositeOperation = 'source-atop';
+    tempCtx.fillStyle = this.ethnicity;  // Color deseado con transparencia
+    tempCtx.fillRect(0, 0, 48, 48);
+
+    // Dibujar el cuerpo pintado en el canvas principal
+    actualCharacter.drawImage(tempCanvas, 0, 0);
+
+    // Dibujar el lineart del cuerpo encima para preservar detalles
+    actualCharacter.drawImage(bodyLineart, 48, 0, 48, 48, 0, 0, 48, 48);
+
+    // Aplicar filtro para los ojos y dibujar
+    actualCharacter.filter = `hue-rotate(${this.eyes}deg) brightness(1)`;
     actualCharacter.drawImage(eyesCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
+    actualCharacter.filter = "none";
 
-    actualCharacter.filter ="hue-rotate(" +this.hair[0] +"deg) brightness(" +Number(1 - this.hair[0] / 1000) +")";
-    actualCharacter.drawImage(hairCharacter,this.hair[2][this.hair[1]],0,48,48,0,0,48,48);
+    // Aplicar filtro para el cabello y dibujar
+    actualCharacter.filter = `hue-rotate(${this.hair[0]}deg) brightness(${1 - this.hair[0] / 1000})`;
+    actualCharacter.drawImage(hairCharacter, this.hair[2][this.hair[1]], 0, 48, 48, 0, 0, 48, 48);
+    actualCharacter.filter = "none";
 
-
+    // Dibujar las gafas sin filtro
     actualCharacter.drawImage(glassesCharacter, this.glasses, 0, 48, 40, 0, 0, 48, 48);
-  };
+};
+
 
   this.drawMyChar();
 }
