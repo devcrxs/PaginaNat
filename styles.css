@@ -676,6 +676,13 @@ header{
     outline: 2px solid rgba(0, 0, 0, 0.1);
     outline-offset: 2px;
 }
+.contentDobleOptions{
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
 .save-button {
     background-color: #f9588a; /* Pink background */
     color: white; /* White text */

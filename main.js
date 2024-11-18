@@ -46,7 +46,7 @@ canvasScreenYourself.height = 50;
 let contextPartner = canvasScreenPartner.getContext("2d");
 let contextYourself = canvasScreenYourself.getContext("2d");
 //new NewChar(gender,race,ethn,hair,eyes);
-function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
+function NewChar(actualCharacter,gender, skin, hair, eyes, glasses,hairColor) {
   if (gender === undefined) {
     gender = "male";
     skin = "rgb(243, 221, 202,1)";
@@ -54,12 +54,14 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
     hair[1] = 0;
     eyes = 0;
     glasses = 0;
+    hairColor = "rgb(0, 0, 0,1)";
   }else{
     skin = "rgb(243, 221, 202,1)";
     hair = [[0], [4], [48, 246, 336]];
     hair[1] = 1;
     eyes = 0;
     glasses = 0;
+    hairColor = "rgb(0, 0, 0,1)";
   }
 
   this.gender = gender;
@@ -67,6 +69,7 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
   this.hair = hair;
   this.eyes = eyes;
   this.glasses = glasses;
+  this.hairColor = hairColor;
 
   this.drawMyChar = () => {
     // Limpiar el canvas principal
@@ -96,7 +99,14 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
     actualCharacter.drawImage(tempCanvas, 0, 0);
 
     // Dibujar el lineart del cuerpo encima para preservar detalles
+    if (this.gender === "male") {
+      actualCharacter.drawImage(bodyLineart, 48, 0, 48, 48, 0, 0, 48, 48);
+  } else if (this.gender === "female") {
+    actualCharacter.drawImage(bodyLineart, 192, 0, 48, 48, 0, 0, 48, 48);
+  } else {
     actualCharacter.drawImage(bodyLineart, 48, 0, 48, 48, 0, 0, 48, 48);
+  }
+    
 
     // Aplicar filtro para los ojos y dibujar
     actualCharacter.filter = `hue-rotate(${this.eyes}deg) brightness(1)`;
@@ -108,11 +118,60 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses) {
     actualCharacter.drawImage(hairCharacter, this.hair[2][this.hair[1]], 0, 48, 48, 0, 0, 48, 48);
     actualCharacter.filter = "none";
 
+
+
+
+
+    const hairCanvas = document.createElement('canvas');
+hairCanvas.width = 48;
+hairCanvas.height = 48;
+const hairCtx = hairCanvas.getContext('2d');
+
+// Dibujar el sprite del cabello seleccionado en el canvas temporal
+hairCtx.drawImage(hairCharacter, this.hair[2][this.hair[1]], 0, 48, 48, 0, 0, 48, 48);
+
+// Obtener los datos de la imagen del cabello
+const hairData = hairCtx.getImageData(0, 0, 48, 48);
+const pixels = hairData.data;
+
+// Extraer los valores RGB del color del cabello
+const hairColorMatch = this.hairColor.match(/\d+/g);
+const targetR = parseInt(hairColorMatch[0], 10);
+const targetG = parseInt(hairColorMatch[1], 10);
+const targetB = parseInt(hairColorMatch[2], 10);
+
+// Recorrer los píxeles para recolorear
+for (let i = 0; i < pixels.length; i += 4) {
+  // Solo modificar píxeles opacos (canal alpha > 0)
+  if (pixels[i + 3] > 0) {
+    pixels[i] = targetR;     // Rojo
+    pixels[i + 1] = targetG; // Verde
+    pixels[i + 2] = targetB; // Azul
+  }
+}
+
+// Colocar los datos modificados de vuelta en el canvas temporal
+hairCtx.putImageData(hairData, 0, 0);
+
+// Dibujar el cabello coloreado en el canvas principal
+actualCharacter.drawImage(hairCanvas, 0, 0);
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
     // Dibujar las gafas sin filtro
     actualCharacter.drawImage(glassesCharacter, this.glasses, 0, 48, 40, 0, 0, 48, 48);
 };
-
-
   this.drawMyChar();
 }
 
@@ -149,8 +208,6 @@ window.onload = function() {
   SetCategoryPersonalization('GenderYourself','2');
 };
 
-
-
 let optionSingles = document.querySelectorAll('.contentOptions');
 
 optionSingles.forEach(contenedor => {
@@ -159,7 +216,6 @@ optionSingles.forEach(contenedor => {
   buttons.forEach(button => {
     button.addEventListener('click', function() {
       buttons.forEach(btn => btn.classList.remove('selected'));
-
       this.classList.add('selected');
     });
   });
@@ -172,9 +228,6 @@ optionSingles.forEach(contenedor => {
     }
   });
 });
-
-
-
 
 //TODO
 let selectedCount = 0;
