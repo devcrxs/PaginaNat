@@ -54,14 +54,14 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses,hairColor) {
     hair[1] = 0;
     eyes = 0;
     glasses = 0;
-    hairColor = "rgb(0, 0, 0,1)";
+    hairColor = "rgb(50 , 20, 100)";
   }else{
     skin = "rgb(243, 221, 202,1)";
     hair = [[0], [4], [48, 246, 336]];
     hair[1] = 1;
     eyes = 0;
     glasses = 0;
-    hairColor = "rgb(0, 0, 0,1)";
+    hairColor = "rgb(0, 0, 0)";
   }
 
   this.gender = gender;
@@ -108,68 +108,85 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses,hairColor) {
   }
     
 
-    // Aplicar filtro para los ojos y dibujar
-    actualCharacter.filter = `hue-rotate(${this.eyes}deg) brightness(1)`;
-    actualCharacter.drawImage(eyesCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
-    actualCharacter.filter = "none";
+
 
     // Aplicar filtro para el cabello y dibujar
-    actualCharacter.filter = `hue-rotate(${this.hair[0]}deg) brightness(${1 - this.hair[0] / 1000})`;
-    actualCharacter.drawImage(hairCharacter, this.hair[2][this.hair[1]], 0, 48, 48, 0, 0, 48, 48);
-    actualCharacter.filter = "none";
+    //actualCharacter.filter = `hue-rotate(${this.hair[0]}deg) brightness(${1 - this.hair[0] / 1000})`;
+    //actualCharacter.drawImage(hairCharacter, this.hair[2][this.hair[1]], 0, 48, 48, 0, 0, 48, 48);
+    //actualCharacter.filter = "none";
+
+
+      // Pintar el cabello preservando detalles
+      const hairCanvas = document.createElement('canvas');
+      hairCanvas.width = 48;
+      hairCanvas.height = 48;
+      const hairCtx = hairCanvas.getContext('2d');
+
+      // Dibujar el cabello original en un canvas temporal
+      hairCtx.drawImage(
+          hairCharacter,
+          this.hair[2][this.hair[1]],
+          0,
+          48,
+          48,
+          0,
+          0,
+          48,
+          48
+      );
+
+      // Obtener los datos de los píxeles
+      const imageData = hairCtx.getImageData(0, 0, 48, 48);
+      const pixels = imageData.data;
+
+      // Convertir el color deseado en RGB
+      const [rTarget, gTarget, bTarget] = this.hairColor
+          .match(/\d+/g)
+          .map(Number);
+
+      // Reemplazar solo los píxeles claros
+      for (let i = 0; i < pixels.length; i += 4) {
+          const r = pixels[i];
+          const g = pixels[i + 1];
+          const b = pixels[i + 2];
+          const alpha = pixels[i + 3];
+
+          // Detectar píxeles claros y recolorearlos
+          if (r > 200 && g > 200 && b > 200 && alpha > 0) {
+              pixels[i] = rTarget; // Rojo
+              pixels[i + 1] = gTarget; // Verde
+              pixels[i + 2] = bTarget; // Azul
+          }
+      }
+
+      // Actualizar la imagen del cabello con los píxeles modificados
+      hairCtx.putImageData(imageData, 0, 0);
+
+      // Dibujar el cabello en el canvas principal
+      actualCharacter.drawImage(hairCanvas, 0, 0);
+
+      // Dibujar las gafas sin filtro
+      actualCharacter.drawImage(
+          glassesCharacter,
+          this.glasses,
+          0,
+          48,
+          40,
+          0,
+          0,
+          48,
+          48
+      );
 
 
 
 
 
-    const hairCanvas = document.createElement('canvas');
-hairCanvas.width = 48;
-hairCanvas.height = 48;
-const hairCtx = hairCanvas.getContext('2d');
-
-// Dibujar el sprite del cabello seleccionado en el canvas temporal
-hairCtx.drawImage(hairCharacter, this.hair[2][this.hair[1]], 0, 48, 48, 0, 0, 48, 48);
-
-// Obtener los datos de la imagen del cabello
-const hairData = hairCtx.getImageData(0, 0, 48, 48);
-const pixels = hairData.data;
-
-// Extraer los valores RGB del color del cabello
-const hairColorMatch = this.hairColor.match(/\d+/g);
-const targetR = parseInt(hairColorMatch[0], 10);
-const targetG = parseInt(hairColorMatch[1], 10);
-const targetB = parseInt(hairColorMatch[2], 10);
-
-// Recorrer los píxeles para recolorear
-for (let i = 0; i < pixels.length; i += 4) {
-  // Solo modificar píxeles opacos (canal alpha > 0)
-  if (pixels[i + 3] > 0) {
-    pixels[i] = targetR;     // Rojo
-    pixels[i + 1] = targetG; // Verde
-    pixels[i + 2] = targetB; // Azul
-  }
-}
-
-// Colocar los datos modificados de vuelta en el canvas temporal
-hairCtx.putImageData(hairData, 0, 0);
-
-// Dibujar el cabello coloreado en el canvas principal
-actualCharacter.drawImage(hairCanvas, 0, 0);
-
-
-    
 
 
 
 
-
-
-
-
-
-
-
-    // Dibujar las gafas sin filtro
+      // Dibujar las gafas sin filtro
     actualCharacter.drawImage(glassesCharacter, this.glasses, 0, 48, 40, 0, 0, 48, 48);
 };
   this.drawMyChar();
