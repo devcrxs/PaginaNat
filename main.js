@@ -52,14 +52,14 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses,hairColor) {
     skin = "rgb(243, 221, 202,1)";
     hair = [[0], [4], [48, 246, 336]];
     hair[1] = 0;
-    eyes = 0;
+    eyes = "rgb(0 , 0, 0)";
     glasses = 0;
-    hairColor = "rgb(50 , 20, 100)";
+    hairColor = "rgb(0 , 0, 0)";
   }else{
     skin = "rgb(243, 221, 202,1)";
     hair = [[0], [4], [48, 246, 336]];
     hair[1] = 1;
-    eyes = 0;
+    eyes = "rgb(0 , 0, 0)";
     glasses = 0;
     hairColor = "rgb(0, 0, 0)";
   }
@@ -106,14 +106,48 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses,hairColor) {
   } else {
     actualCharacter.drawImage(bodyLineart, 48, 0, 48, 48, 0, 0, 48, 48);
   }
-    
 
 
 
-    // Aplicar filtro para el cabello y dibujar
-    //actualCharacter.filter = `hue-rotate(${this.hair[0]}deg) brightness(${1 - this.hair[0] / 1000})`;
-    //actualCharacter.drawImage(hairCharacter, this.hair[2][this.hair[1]], 0, 48, 48, 0, 0, 48, 48);
-    //actualCharacter.filter = "none";
+
+      const eyeCanvas = document.createElement('canvas');
+      eyeCanvas.width = 48;
+      eyeCanvas.height = 48;
+      const eyeCtx = eyeCanvas.getContext('2d');
+
+      // Dibujar los ojos originales en el canvas temporal
+      eyeCtx.drawImage(eyesCharacter, 48, 0, 48, 48, 0, 0, 48, 48);
+
+      // Obtener los datos de los píxeles
+      const eyeImageData = eyeCtx.getImageData(0, 0, 48, 48);
+      const eyePixels = eyeImageData.data;
+
+      // Convertir el color deseado en RGB
+      const [rTarget2, gTarget2, bTarget2] = this.eyes.match(/\d+/g).map(Number);
+
+      // Reemplazar solo los píxeles de los ojos
+      for (let i = 0; i < eyePixels.length; i += 4) {
+          const r = eyePixels[i];
+          const g = eyePixels[i + 1];
+          const b = eyePixels[i + 2];
+          const alpha = eyePixels[i + 3];
+
+          // Detectar píxeles claros o colores específicos
+          if (r > 200 && g > 200 && b > 200 && alpha > 0) {
+              eyePixels[i] = rTarget2; // Rojo
+              eyePixels[i + 1] = gTarget2; // Verde
+              eyePixels[i + 2] = bTarget2; // Azul
+          }
+      }
+
+      // Actualizar la imagen de los ojos con los píxeles modificados
+      eyeCtx.putImageData(eyeImageData, 0, 0);
+
+      // Dibujar los ojos en el canvas principal
+      actualCharacter.drawImage(eyeCanvas, 0, 0);
+
+
+
 
 
       // Pintar el cabello preservando detalles
@@ -177,14 +211,6 @@ function NewChar(actualCharacter,gender, skin, hair, eyes, glasses,hairColor) {
           48,
           48
       );
-
-
-
-
-
-
-
-
 
       // Dibujar las gafas sin filtro
     actualCharacter.drawImage(glassesCharacter, this.glasses, 0, 48, 40, 0, 0, 48, 48);
