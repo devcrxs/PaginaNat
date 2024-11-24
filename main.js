@@ -616,12 +616,14 @@ function selectOption(option) {
       images[0].alt = 'Close-up of a hard cover book showing its durability';
       images[1].src = 'https://cdn.hoorayheroes.com/static/assets/web/images/product/covers/hard/02.jpg';
       images[1].alt = 'Open hard cover book showing the quality of the materials';
+      SavePreviewSection('text-section-cover','Hard Cover');
   } else {
       infoBox.textContent = 'The soft cover versions of our books have soft, pliable covers made from thick, high-quality paper meant to withstand endless bending.';
       images[0].src = 'https://cdn.hoorayheroes.com/static/assets/web/images/product/covers/soft/01.jpg';
       images[0].alt = 'Close-up of a soft cover book showing its flexibility';
       images[1].src = 'https://cdn.hoorayheroes.com/static/assets/web/images/product/covers/soft/02.jpg';
       images[1].alt = 'Open soft cover book showing the quality of the paper';
+      SavePreviewSection('text-section-cover','Soft Cover');
   }
 }
 window.addEventListener('resize', setMaxLengthResponsive);
@@ -1119,6 +1121,10 @@ function EditSection (blockToDisplay, sectionToHide){
       block: 'center' // Opcional, trata de centrar el bloque
     });
   }
+}
+function SavePreviewSection (textId, textToShow){
+    let text = document.querySelector("#" + textId);
+    text.textContent = textToShow;
 }
 
 function CreatePreviewImage (urlImage,previewIndex){

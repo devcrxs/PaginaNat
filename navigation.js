@@ -76,3 +76,13 @@ const smoothScrollToSection = (targetId) => {
     block: 'center'
   });
 };
+function moveCarousel2(direction,contentItems) {
+  let carouselContainer = document.querySelector(contentItems);
+  const scrollAmount = 200; // Cantidad de desplazamiento
+  if (direction === 'left') {
+    carouselContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  } else if (direction === 'right') {
+    carouselContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+}
+

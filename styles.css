@@ -518,6 +518,47 @@ header{
     border: 2px solid grey;
 }
 
+/* Carrusel personalizado */
+.custom-carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-items-Partner, .carousel-items-Yourself{
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    width: 55%; /* Ajusta el tamaño según sea necesario */
+    justify-content: flex-start;
+    padding-left: 7px;
+}
+.carousel-items-options {
+    display: flex;
+    gap: 2px;
+    overflow-x: hidden;
+    width: 48%; /* Ajusta el tamaño según sea necesario */
+    justify-content: flex-start;
+    padding-left: 7px;
+}
+
+.carousel-arrow2 {
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+    font-size: 40px;
+    background-color: transparent;
+}
+
+.carousel-arrow2 i {
+    color: #f9588a;
+}
+
+/* Radio Button Inputs */
 .radio-inputs {
     display: flex;
     justify-content: center;
@@ -526,43 +567,43 @@ header{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  
+}
+
 .radio-inputs > * {
     margin: 6px;
 }
-  
+
 .radio-input:checked + .radio-tile {
     border-color: #f9588a;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     color: #f9588a;
 }
-  
+
 .radio-input:checked + .radio-tile:before {
     transform: scale(1);
     opacity: 1;
     background-color: #f9588a;
     border-color: #f9588a;
 }
-  
+
 .radio-input:checked + .radio-tile .radio-icon svg {
     fill: #f9588a;
 }
-  
-  .radio-input:checked + .radio-tile .radio-label {
+
+.radio-input:checked + .radio-tile .radio-label {
     color: #f9588a;
-  }
-  
+}
+
 .radio-input:focus + .radio-tile {
     border-color: #f9588a;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #ff5c8a3b;
 }
-  
+
 .radio-input:focus + .radio-tile:before {
     transform: scale(1);
     opacity: 1;
 }
-  
+
 .radio-tile {
     display: flex;
     flex-direction: column;
@@ -578,7 +619,7 @@ header{
     cursor: pointer;
     position: relative;
 }
-  
+
 .radio-tile:before {
     content: "";
     position: absolute;
@@ -594,29 +635,29 @@ header{
     transform: scale(0);
     transition: 0.25s ease;
 }
-  
+
 .radio-tile:hover {
     border-color: #f9588a;
 }
-  
+
 .radio-tile:hover:before {
     transform: scale(1);
     opacity: 1;
 }
-  
+
 .radio-icon img {
     width: 2rem;
     height: 2rem;
     fill: #494949;
 }
-  
+
 .radio-label {
     color: #707070;
     transition: 0.375s ease;
     text-align: center;
     font-size: 13px;
 }
-  
+
 .radio-input {
     clip: rect(0 0 0 0);
     -webkit-clip-path: inset(100%);
@@ -627,6 +668,7 @@ header{
     white-space: nowrap;
     width: 1px;
 }
+
 .grid-item1{
     align-items: center;
     justify-content: center;
@@ -643,7 +685,7 @@ header{
 
     display: none;
 }
-.optionsPersonalization div button{
+.optionsPersonalization div button:not([carousel-button]){
     background-color: #ffffff;
     border: 1px solid rgb(209, 213, 219);
     border-radius: 0.5rem;
@@ -664,7 +706,7 @@ header{
     touch-action: manipulation;
     margin: 0 5px;
 }
-.optionsPersonalization div button:hover {
+.optionsPersonalization div button:hover:not([carousel-button]){
     background-color: #f9fafb;
 }
   
