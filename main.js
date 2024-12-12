@@ -631,6 +631,7 @@ window.addEventListener('DOMContentLoaded', setMaxLengthResponsive);
 
 function setMaxLengthResponsive() {
     const textarea = document.getElementById('textAreaDedication');
+    /*
     const width = window.innerWidth; // O el tamaño del contenedor si prefieres
 
     let maxLength;
@@ -643,7 +644,25 @@ function setMaxLengthResponsive() {
       maxLength = 300; // Para pantallas grandes
     }
 
-    textarea.setAttribute('maxlength', maxLength);
+    textarea.setAttribute('maxlength', maxLength);*/
+    const maxCharsPerLine = 35; // Máximo de caracteres por línea
+    const maxLines = 12;         // Máximo de líneas
+
+    textarea.addEventListener('input', () => {
+        const lines = textarea.value.split('\n');
+
+        // Limitar caracteres por línea
+        const limitedLines = lines.map(line =>
+            line.length > maxCharsPerLine ? line.slice(0, maxCharsPerLine) : line
+        );
+
+        // Limitar el número de líneas
+        if (limitedLines.length > maxLines) {
+            textarea.value = limitedLines.slice(0, maxLines).join('\n');
+        } else {
+            textarea.value = limitedLines.join('\n');
+        }
+    });
 }
 
 
